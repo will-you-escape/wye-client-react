@@ -11,11 +11,11 @@ class LoginForm extends React.Component {
         <form>
           <div>
             <label>Email</label>
-            <input type="text" name="email"/>
+            <input type="text" name="email" />
           </div>
           <div>
             <label>Password</label>
-            <input type="password" class="form-control col-md-6" name="password"/>
+            <input type="password" name="password" />
           </div>
           <div class="form-group">
             <button class="btn btn-primary">Login</button>

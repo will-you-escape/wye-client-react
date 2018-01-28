@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^6.1.0",
+    "prettier": "^1.10.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.0"
@@ -12,10 +15,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "precommit": "lint-staged"
   },
   "devDependencies": {
     "@storybook/react": "^3.3.11",
     "babel-core": "^6.26.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+     "prettier --single-quote --write",
+     "git add"
+    ]
   }
 }

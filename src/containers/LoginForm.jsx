@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Button from '../components/Button';
 import auth from '../auth/core';
+import { logUser } from '../actions/index';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -26,10 +28,13 @@ class LoginForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const { logUser } = this.props;
+
     auth
       .login(this.state.email, this.state.password)
       .then(response => {
         alert('auth sucessful!');
+        logUser();
       })
       .catch(error => {
         alert('auth problem');
@@ -67,4 +72,14 @@ class LoginForm extends React.Component {
   }
 }
 
-export default LoginForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    logUser: () => {
+      dispatch(logUser());
+    }
+  };
+};
+
+const ConnectedLoginForm = connect(null, mapDispatchToProps)(LoginForm);
+
+export default ConnectedLoginForm;

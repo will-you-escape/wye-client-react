@@ -2,19 +2,13 @@ let emptyAuth = {
   logged: false
 };
 
-const auth = (state = emptyAuth, action) => {
+const auth = (authState = emptyAuth, action) => {
   switch (action.type) {
     case 'LOG_USER':
-      return [
-        ...state,
-        {
-          auth: {
-            logged: true
-          }
-        }
-      ];
+      authState.logged = true;
+      return authState;
     default:
-      return state;
+      return authState;
   }
 };
 

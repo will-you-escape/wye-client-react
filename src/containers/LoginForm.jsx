@@ -28,16 +28,15 @@ class LoginForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { logUser } = this.props;
+    const { dispatchLogUser } = this.props;
 
     auth
       .login(this.state.email, this.state.password)
       .then(response => {
-        alert('auth sucessful!');
-        logUser();
+        dispatchLogUser();
       })
       .catch(error => {
-        alert('auth problem');
+        alert(error);
       });
   }
 
@@ -74,7 +73,7 @@ class LoginForm extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logUser: () => {
+    dispatchLogUser: () => {
       dispatch(logUser());
     }
   };

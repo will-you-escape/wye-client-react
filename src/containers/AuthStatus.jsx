@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 
 class AuthStatus extends React.Component {
   render() {
+    const { loggedIn } = this.props;
+
     return (
       <div>
-        <p>User logged in: {this.props.loggedIn}</p>
+        <p>User logged in: {loggedIn ? 'YES!' : 'NO'}</p>
       </div>
     );
   }
@@ -13,7 +15,7 @@ class AuthStatus extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.userLogged
+    loggedIn: state.auth.logged
   };
 };
 

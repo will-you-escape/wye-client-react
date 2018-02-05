@@ -10,8 +10,10 @@ import AuthStatus from './containers/AuthStatus';
 import LoginForm from './containers/LoginForm';
 import LogoutForm from './containers/LogoutForm';
 
-let store = createStore(wyeReducers);
-console.log(store.getState());
+import { DEBUG_TOOLS } from './debug';
+
+let store = createStore(wyeReducers, DEBUG_TOOLS);
+
 class App extends Component {
   render() {
     return (

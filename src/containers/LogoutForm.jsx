@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Button from '../components/Button';
 import auth from '../auth/core';
+import { logOutUser } from '../actions';
 
 class LogoutForm extends React.Component {
   constructor(props) {
@@ -10,13 +12,14 @@ class LogoutForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const { dispatchLogOutUser } = this.props;
     auth
       .logout()
       .then(response => {
-        alert('logout sucessful!');
+        dispatchLogOutUser();
       })
       .catch(error => {
-        alert('logout problem');
+        alert(error);
       });
   }
 
@@ -33,4 +36,12 @@ class LogoutForm extends React.Component {
   }
 }
 
-export default LogoutForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatchLogOutUser: () => {
+      dispatch(logOutUser());
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(LogoutForm);

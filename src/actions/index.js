@@ -3,3 +3,9 @@ export const logUser = () => {
     type: 'LOG_USER'
   };
 };
+
+export const initApp = () => {
+  return {
+    type: 'INIT_APP'
+  };
+};

@@ -10,9 +10,12 @@ import AuthStatus from './containers/AuthStatus';
 import LoginForm from './containers/LoginForm';
 import LogoutForm from './containers/LogoutForm';
 
+import { initApp } from './actions';
+
 import { DEBUG_TOOLS } from './debug';
 
 let store = createStore(wyeReducers, DEBUG_TOOLS);
+store.dispatch(initApp());
 
 class App extends Component {
   render() {

@@ -5,12 +5,7 @@ import auth from '../auth/core';
 import { logOutUser } from '../actions';
 
 class LogoutForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
     const { dispatchLogOutUser } = this.props;
     auth
@@ -21,7 +16,7 @@ class LogoutForm extends React.Component {
       .catch(error => {
         alert(error);
       });
-  }
+  };
 
   render() {
     return (

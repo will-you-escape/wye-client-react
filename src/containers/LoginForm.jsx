@@ -8,25 +8,21 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { email: '', password: '' };
-
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChangeEmail(event) {
+  handleChangeEmail = event => {
     this.setState({
       email: event.target.value
     });
-  }
+  };
 
-  handleChangePassword(event) {
+  handleChangePassword = event => {
     this.setState({
       password: event.target.value
     });
-  }
+  };
 
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
     const { dispatchLogUser } = this.props;
 
@@ -38,7 +34,7 @@ class LoginForm extends React.Component {
       .catch(error => {
         alert(error);
       });
-  }
+  };
 
   render() {
     return (

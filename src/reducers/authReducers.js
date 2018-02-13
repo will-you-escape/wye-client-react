@@ -14,6 +14,10 @@ const auth = (state = emptyAuth, action) => {
       return Object.assign({}, state, {
         logged: true
       });
+    case 'LOG_OUT_USER':
+      return Object.assign({}, state, {
+        logged: false
+      });
     default:
       return state;
   }

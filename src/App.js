@@ -23,7 +23,7 @@ class App extends Component {
       <BrowserRouter>
         <Provider store={store}>
           <Switch>
-            <Route exact path="/" component={Base} />
+            <Route exact path="/" component={Base} name="homepage" />
             <Route path="/my-account" component={requireAuth(MyAccount)} />
           </Switch>
         </Provider>

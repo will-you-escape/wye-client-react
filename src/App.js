@@ -12,6 +12,8 @@ import { DEBUG_TOOLS } from './debug';
 import Base from './containers/Base';
 import MyAccount from './containers/MyAccount';
 
+import requireAuth from './auth/requireAuth';
+
 let store = createStore(wyeReducers, DEBUG_TOOLS);
 store.dispatch(initApp());
 
@@ -22,7 +24,7 @@ class App extends Component {
         <Provider store={store}>
           <Switch>
             <Route exact path="/" component={Base} />
-            <Route path="/my-account" component={MyAccount} />
+            <Route path="/my-account" component={requireAuth(MyAccount)} />
           </Switch>
         </Provider>
       </BrowserRouter>

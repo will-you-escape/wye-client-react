@@ -5,13 +5,13 @@ const Button = styled.button`
   padding: 0.25em 1em;
   margin: 0 1em;
   background: transparent;
-  color: palevioletred;
-  border: 2px solid palevioletred;
+  color: black;
+  border: 2px solid black;
 
   ${props =>
     props.primary &&
     css`
-      background: palevioletred;
+      background: black;
       color: white;
     `};
 `;

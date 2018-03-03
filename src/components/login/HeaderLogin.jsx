@@ -5,11 +5,12 @@ import Button from '../Button';
 import LoginForm from '../../containers/LoginForm';
 
 class HeaderLogin extends React.Component {
-  getInitialState = () => {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       overlayDisplay: false
     };
-  };
+  }
 
   onLoginClick = () => {
     this.setState({ overlayDisplay: true });
@@ -19,19 +20,30 @@ class HeaderLogin extends React.Component {
     this.setState({ overlayDisplay: false });
   };
 
+  renderOverlay = () => {
+    const { onLoginSuccess } = this.props;
+    const displayOverlay = this.state.overlayDisplay;
+
+    if (displayOverlay) {
+      return (
+        <Overlay onClose={this.onClose}>
+          <LoginForm onLoginSuccess={onLoginSuccess} />
+        </Overlay>
+      );
+    }
+  };
+
   render() {
-    const { onLoginClick, onLoginSuccess } = this.props;
+    const overlay = this.renderOverlay();
 
     return (
-      <div class="header__login">
+      <div className="header__login">
         <span>Already have an account?</span>
-        <Button onClick={onLoginClick}>Login</Button>
-        {this.state.overlayDisplay ? (
-          <Overlay onClose={this.onClose}>
-            <LoginForm onLoginSuccess={onLoginSuccess} />
-          </Overlay>
-        ) : null}
+        <Button onClick={this.onLoginClick}>Login</Button>
+        {overlay}
       </div>
     );
   }
 }
+
+export default HeaderLogin;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import CloseSign from '../CloseSign';
+import CloseSign from './CloseSign';
 import './Overlay.css';
 
 class Overlay extends React.Component {

@@ -44,5 +44,6 @@ describe('<HeaderLogin/>', () => {
 });
 
 export function givenDefaultHeaderLogin() {
-  return <HeaderLogin />;
+  const onLoginSuccess = () => alert('Login successful');
+  return <HeaderLogin onLoginSuccess={onLoginSuccess} />;
 }

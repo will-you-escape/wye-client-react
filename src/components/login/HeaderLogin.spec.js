@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 
 import HeaderLogin from './HeaderLogin';
-import Overlay from '../Overlay';
+import Overlay from '../overlay/Overlay';
 import Button from '../Button';
 
 describe('<HeaderLogin/>', () => {

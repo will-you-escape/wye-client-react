@@ -5,5 +5,5 @@ import { action } from '@storybook/addon-actions';
 import { givenDefaultHeaderLogin } from './HeaderLogin.spec';
 
 storiesOf('HeaderLogin', module).add('with text', () => {
-  return givenDefaultLoginForm();
+  return givenDefaultHeaderLogin();
 });

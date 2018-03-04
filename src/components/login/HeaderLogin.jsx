@@ -38,7 +38,7 @@ class HeaderLogin extends React.Component {
 
     return (
       <div className="header__login">
-        <span>Already have an account?</span>
+        <span className="header__login--message">Already have an account?</span>
         <Button onClick={this.onLoginClick}>Login</Button>
         {overlay}
       </div>

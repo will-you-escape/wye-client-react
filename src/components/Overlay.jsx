@@ -6,3 +6,5 @@ class Overlay extends React.Component {
     return <div class="overlay" />;
   }
 }
+
+export default Overlay;

@@ -8,7 +8,6 @@ import LoginForm from './LoginForm';
 describe('<LoginForm/>', () => {
   it('renders default LoginForm', () => {
     const wrapper = mount(givenDefaultLoginForm());
-    console.log(wrapper);
     expect(wrapper.find('form')).to.have.length(1);
     expect(wrapper.find('form input')).to.have.length(2);
   });

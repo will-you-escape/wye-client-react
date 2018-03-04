@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Button from '../Button';
+import Overlay from '../Overlay';
 import LoginForm from '../../containers/LoginForm';
 
 class HeaderLogin extends React.Component {

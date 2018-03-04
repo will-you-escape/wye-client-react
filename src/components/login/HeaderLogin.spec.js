@@ -4,6 +4,7 @@ import { mount } from 'enzyme';
 
 import HeaderLogin from './HeaderLogin';
 import Overlay from '../Overlay';
+import Button from '../Button';
 
 describe('<HeaderLogin/>', () => {
   it('renders default HeaderLogin', () => {
@@ -22,8 +23,19 @@ describe('<HeaderLogin/>', () => {
     expect(findOverlay(wrapper)).to.have.length(0);
   });
 
+  it('displays overlay after click', () => {
+    const wrapper = mount(givenDefaultHeaderLogin());
+    const button = findLoginButton(wrapper);
+    button.simulate('click');
+    expect(findOverlay(wrapper)).to.have.length(1);
+  });
+
   function findLoginMessage(wrapper) {
     return wrapper.find('.header__login--message');
+  }
+
+  function findLoginButton(wrapper) {
+    return wrapper.find(Button);
   }
 
   function findOverlay(wrapper) {

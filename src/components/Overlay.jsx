@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class Overlay extends React.Component {
   render() {
-    return <div class="overlay" />;
+    return <div className="overlay" />;
   }
 }
 

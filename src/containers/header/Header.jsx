@@ -11,8 +11,12 @@ class Header extends React.Component {
   render() {
     return (
       <div className="main-header">
-        <Logo />
-        <HeaderLogin onLoginSuccess={this.onLoginSuccess} />
+        <div className="main-header__element">
+          <Logo />
+        </div>
+        <div className="main-header__element">
+          <HeaderLogin onLoginSuccess={this.onLoginSuccess} />
+        </div>
       </div>
     );
   }

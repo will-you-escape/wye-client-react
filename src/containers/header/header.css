@@ -3,6 +3,10 @@
   justify-content: space-between;
 }
 
+.main-header__element {
+  align-self: auto;
+}
+
 .main-header .main-logo img {
   height: 4em;
 }

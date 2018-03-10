@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import HeaderLogin from '../../components/login/HeaderLogin';
 import Logo from '../../components/logo/Logo';

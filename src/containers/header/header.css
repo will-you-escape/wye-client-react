@@ -1,0 +1,12 @@
+.main-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-header__element {
+  align-self: center;
+}
+
+.main-header .main-logo img {
+  height: 4em;
+}

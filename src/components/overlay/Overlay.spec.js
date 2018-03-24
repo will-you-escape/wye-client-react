@@ -12,11 +12,10 @@ describe('<Overlay/>', () => {
 
   it('renders passed children without alteration', () => {
     const wrapper = mount(
-      <Overlay>
+      <Overlay displayOverlay={true}>
         <span className="span-child-testingonly">This is an overlay child</span>
       </Overlay>
     );
-    expect(wrapper.find('.span-child-testingonly')).to.have.length(1);
     expect(wrapper.find('.span-child-testingonly').text()).to.equal(
       'This is an overlay child'
     );
@@ -24,7 +23,9 @@ describe('<Overlay/>', () => {
 
   it('triggers "onClose" action when clicking on close sign', () => {
     const onCloseSpy = sinon.spy();
-    const wrapper = mount(<Overlay onClose={onCloseSpy} />);
+    const wrapper = mount(
+      <Overlay onClose={onCloseSpy} displayOverlay={true} />
+    );
     findCloseSign(wrapper).simulate('click');
     expect(onCloseSpy.called).to.be.true;
   });
@@ -37,7 +38,7 @@ describe('<Overlay/>', () => {
 export function givenDefaultOverlay() {
   const onClose = () => alert('Closing overlay action');
   return (
-    <Overlay onClose={onClose}>
+    <Overlay onClose={onClose} displayOverlay={true}>
       <span>This is an overlay content</span>
     </Overlay>
   );

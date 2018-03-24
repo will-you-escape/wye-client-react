@@ -24,13 +24,11 @@ class HeaderLogin extends React.Component {
     const { onLoginSuccess } = this.props;
     const displayOverlay = this.state.overlayDisplay;
 
-    if (displayOverlay) {
-      return (
-        <Overlay onClose={this.onClose}>
-          <LoginForm onLoginSuccess={onLoginSuccess} />
-        </Overlay>
-      );
-    }
+    return (
+      <Overlay onClose={this.onClose} displayOverlay={displayOverlay}>
+        <LoginForm onLoginSuccess={onLoginSuccess} />
+      </Overlay>
+    );
   };
 
   render() {

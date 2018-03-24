@@ -1,17 +1,20 @@
 import React from 'react';
+import Modal from 'react-modal';
 
 import CloseSign from './CloseSign';
 import './Overlay.css';
 
+Modal.setAppElement('body');
+
 class Overlay extends React.Component {
   render() {
-    const { onClose } = this.props;
+    const { onClose, displayOverlay } = this.props;
 
     return (
-      <div className="overlay">
+      <Modal isOpen={displayOverlay} onRequestClose={onClose}>
         <CloseSign onClose={onClose} />
         {this.props.children}
-      </div>
+      </Modal>
     );
   }
 }

@@ -20,7 +20,7 @@ describe('<HeaderLogin/>', () => {
 
   it('does not display overlay by default', () => {
     const wrapper = mount(givenDefaultHeaderLogin());
-    expect(findOverlay(wrapper)).to.have.length(0);
+    expect(findOverlay(wrapper).prop('displayOverlay')).to.equal(false);
   });
 
   it('displays overlay after click', () => {

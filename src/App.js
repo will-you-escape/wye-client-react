@@ -9,7 +9,7 @@ import { initApp } from './actions';
 
 import { DEBUG_TOOLS } from './debug';
 
-import Base from './containers/Base';
+import HomePage from './homepage/HomePage';
 import MyAccount from './containers/MyAccount';
 
 import requireAuth from './auth/requireAuth';
@@ -23,7 +23,7 @@ class App extends Component {
       <BrowserRouter>
         <Provider store={store}>
           <Switch>
-            <Route exact path="/" component={Base} name="homepage" />
+            <Route exact path="/" component={HomePage} name="homepage" />
             <Route path="/my-account" component={requireAuth(MyAccount)} />
           </Switch>
         </Provider>

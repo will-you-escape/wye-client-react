@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Header from '../containers/header/Header';
 import HomePageContent from './HomePageContent';
 
+import './homepage.css';
+
 export class HomePage extends React.Component {
   render() {
     const { loggedIn } = this.props;

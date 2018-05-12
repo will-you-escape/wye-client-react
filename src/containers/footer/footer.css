@@ -1,0 +1,18 @@
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+footer ul {
+  float: right;
+  list-style-type: none;
+  margin-right: 20px;
+}
+
+footer li {
+  display: inline-block;
+  margin: 0 10px;
+}

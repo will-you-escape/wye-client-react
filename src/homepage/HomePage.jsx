@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Header from '../containers/header/Header';
 import HomePageContent from './HomePageContent';
+import Footer from '../containers/footer/Footer';
 
 import './homepage.css';
 
@@ -14,6 +15,7 @@ export class HomePage extends React.Component {
       <div className="app">
         <Header loggedIn={loggedIn} />
         <HomePageContent />
+        <Footer />
       </div>
     );
   }

@@ -20,13 +20,20 @@ class AccountCreation extends React.Component {
     this.setState({ overlayDisplay: false });
   };
 
+  submit = values => {
+    console.log(values);
+  };
+
   renderOverlay = () => {
     const { onAccountCreationSuccess } = this.props;
     const displayOverlay = this.state.overlayDisplay;
 
     return (
       <Overlay onClose={this.onClose} displayOverlay={displayOverlay}>
-        <AccountCreationForm onLoginSuccess={onAccountCreationSuccess} />
+        <AccountCreationForm
+          onLoginSuccess={onAccountCreationSuccess}
+          onSubmit={this.submit}
+        />
       </Overlay>
     );
   };

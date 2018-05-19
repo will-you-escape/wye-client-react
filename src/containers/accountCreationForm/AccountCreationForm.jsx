@@ -2,6 +2,8 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import Button from '../../components/Button';
+import InputField from '../../form/fields/InputField';
+import { required, identicalToPassword } from '../../form/validators';
 
 class AccountCreationForm extends React.Component {
   customHandleSubmit = event => {
@@ -20,19 +22,39 @@ class AccountCreationForm extends React.Component {
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email">Email</label>
-            <Field name="email" component="input" type="email" />
+            <Field
+              name="email"
+              component={InputField}
+              type="email"
+              validate={[required]}
+            />
           </div>
           <div>
             <label htmlFor="pseudo">Pseudo</label>
-            <Field name="pseudo" component="input" type="text" />
+            <Field
+              name="pseudo"
+              component={InputField}
+              type="text"
+              validate={[required]}
+            />
           </div>
           <div>
             <label htmlFor="password">Password</label>
-            <Field name="password" component="input" type="text" />
+            <Field
+              name="password"
+              component={InputField}
+              type="text"
+              validate={[required]}
+            />
           </div>
           <div>
             <label htmlFor="passwordConfirmation">Password Confirmation</label>
-            <Field name="passwordConfirmation" component="input" type="text" />
+            <Field
+              name="passwordConfirmation"
+              component={InputField}
+              type="text"
+              validate={[required, identicalToPassword]}
+            />
           </div>
           <Button type="submit">Sign up</Button>
         </form>

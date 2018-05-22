@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import AccountCreation from './AccountCreation';
 import Overlay from '../overlay/Overlay';
@@ -8,16 +8,16 @@ import Button from '../Button';
 
 describe('<AccountCreation/>', () => {
   it('renders default AccountCreation', () => {
-    const wrapper = mount(givenDefaultAccountCreation());
+    const wrapper = shallow(givenDefaultAccountCreation());
   });
 
   it('does not display overlay by default', () => {
-    const wrapper = mount(givenDefaultAccountCreation());
+    const wrapper = shallow(givenDefaultAccountCreation());
     expect(findOverlay(wrapper).prop('displayOverlay')).to.equal(false);
   });
 
   it('displays overlay after click', () => {
-    const wrapper = mount(givenDefaultAccountCreation());
+    const wrapper = shallow(givenDefaultAccountCreation());
     const button = findAccountCreationButton(wrapper);
     button.simulate('click');
     expect(findOverlay(wrapper)).to.have.length(1);

@@ -21,6 +21,7 @@ class AccountCreation extends React.Component {
   };
 
   submit = values => {
+    console.log('Account creation successful!');
     console.log(values);
   };
 
@@ -30,10 +31,7 @@ class AccountCreation extends React.Component {
 
     return (
       <Overlay onClose={this.onClose} displayOverlay={displayOverlay}>
-        <AccountCreationForm
-          onLoginSuccess={onAccountCreationSuccess}
-          onSubmit={this.submit}
-        />
+        <AccountCreationForm onSubmit={this.submit} />
       </Overlay>
     );
   };

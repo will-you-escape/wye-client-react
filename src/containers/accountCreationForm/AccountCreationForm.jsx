@@ -3,17 +3,9 @@ import { Field, reduxForm } from 'redux-form';
 
 import Button from '../../components/Button';
 import InputField from '../../form/fields/InputField';
-import { required, identicalToPassword } from '../../form/validators';
+import { required } from '../../form/validators';
 
 class AccountCreationForm extends React.Component {
-  customHandleSubmit = event => {
-    const { handleSubmit, onAccountCreationSuccess } = this.props;
-
-    event.preventDefault();
-    handleSubmit();
-    onAccountCreationSuccess();
-  };
-
   render() {
     const { handleSubmit } = this.props;
 
@@ -53,18 +45,27 @@ class AccountCreationForm extends React.Component {
               name="passwordConfirmation"
               component={InputField}
               type="text"
-              validate={[required, identicalToPassword]}
+              validate={[required]}
             />
           </div>
-          <Button type="submit">Sign up</Button>
+          <Button type="submit">Create account</Button>
         </form>
       </div>
     );
   }
 }
 
+const validate = values => {
+  const errors = {};
+  if (values.password !== values.passwordConfirmation) {
+    errors.passwordConfirmation = 'Not identical to pasword';
+  }
+  return errors;
+};
+
 AccountCreationForm = reduxForm({
-  form: 'accountCreation'
+  form: 'accountCreation',
+  validate
 })(AccountCreationForm);
 
 export default AccountCreationForm;

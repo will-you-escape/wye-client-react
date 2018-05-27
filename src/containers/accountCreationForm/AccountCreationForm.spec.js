@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
+import sinon from 'sinon';
 
 import { wyeCreateStore } from '../../store';
 import AccountCreationForm from './AccountCreationForm';
@@ -35,7 +36,7 @@ describe('<AccountCreationForm/>', () => {
 
     wrapper
       .find('form input[name="email"]')
-      .simulate('change', { target: { value: 'email@wye.com' } });
+      .simulate('change', { target: { value: 'my-email@wye.com' } });
     wrapper.find('form button[type="submit"]').simulate('submit');
 
     expect(wrapper.find('.email.error')).to.have.length(0);
@@ -117,6 +118,44 @@ describe('<AccountCreationForm/>', () => {
     wrapper.find('form button[type="submit"]').simulate('submit');
 
     expect(wrapper.find('.passwordConfirmation.error')).to.have.length(0);
+  });
+
+  it('triggers submit function if all fields filled', () => {
+    const onSubmitSpy = sinon.spy();
+    const wrapper = mount(
+      <Provider store={store}>
+        <AccountCreationForm onSubmit={onSubmitSpy} />
+      </Provider>
+    );
+
+    wrapper
+      .find('form input[name="email"]')
+      .simulate('change', { target: { value: 'my-email@wye.com' } });
+    wrapper
+      .find('form input[name="pseudo"]')
+      .simulate('change', { target: { value: 'my-pseudo' } });
+    wrapper
+      .find('form input[name="password"]')
+      .simulate('change', { target: { value: 'my-password' } });
+    wrapper
+      .find('form input[name="passwordConfirmation"]')
+      .simulate('change', { target: { value: 'my-password' } });
+    wrapper.find('form button[type="submit"]').simulate('submit');
+
+    sinon.assert.calledOnce(onSubmitSpy);
+  });
+
+  it('does not trigger submit function if not all fields filled', () => {
+    const onSubmitSpy = sinon.spy();
+    const wrapper = mount(
+      <Provider store={store}>
+        <AccountCreationForm onSubmit={onSubmitSpy} />
+      </Provider>
+    );
+
+    wrapper.find('form button[type="submit"]').simulate('submit');
+
+    sinon.assert.notCalled(onSubmitSpy);
   });
 });
 

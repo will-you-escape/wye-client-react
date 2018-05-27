@@ -58,7 +58,7 @@ class AccountCreationForm extends React.Component {
 const validate = values => {
   const errors = {};
   if (values.password !== values.passwordConfirmation) {
-    errors.passwordConfirmation = 'Not identical to pasword';
+    errors.passwordConfirmation = 'Not identical to password';
   }
   return errors;
 };

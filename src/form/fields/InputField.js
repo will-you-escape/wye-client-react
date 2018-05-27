@@ -17,8 +17,12 @@ class InputField extends React.Component {
         <div>
           <input {...input} placeholder={label} type={type} />
           {touched &&
-            ((error && <span>{error}</span>) ||
-              (warning && <span>{warning}</span>))}
+            ((error && (
+              <span className={'error ' + input.name}>{error}</span>
+            )) ||
+              (warning && (
+                <span className={'warning ' + input.name}>{warning}</span>
+              )))}
         </div>
       </div>
     );

@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import wyeReducers from './reducers/index';
 import { initApp } from './actions';
-
-import { DEBUG_TOOLS } from './debug';
 
 import HomePage from './homepage/HomePage';
 import MyAccount from './containers/MyAccount';
 
 import requireAuth from './auth/requireAuth';
 
-let store = createStore(wyeReducers, DEBUG_TOOLS);
+import { wyeCreateStore } from './store';
+
+let store = wyeCreateStore();
 store.dispatch(initApp());
 
 class App extends Component {

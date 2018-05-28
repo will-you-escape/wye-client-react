@@ -35,7 +35,7 @@ class AccountCreationForm extends React.Component {
             <Field
               name="password"
               component={InputField}
-              type="text"
+              type="password"
               validate={[required]}
             />
           </div>
@@ -44,7 +44,7 @@ class AccountCreationForm extends React.Component {
             <Field
               name="passwordConfirmation"
               component={InputField}
-              type="text"
+              type="password"
               validate={[required]}
             />
           </div>

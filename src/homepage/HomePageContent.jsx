@@ -5,12 +5,18 @@ import HomePageTitle from './HomePageTitle';
 import AccountCreation from '../components/accountCreation/AccountCreation';
 
 class HomePageContent extends React.Component {
+  onAccountCreationSuccess = () => {
+    console.log('Account creation successful');
+  };
+
   render() {
     return (
       <div className="homepage__content">
         <HomePageTitle />
         <div className="homepage__account-creation">
-          <AccountCreation />
+          <AccountCreation
+            onAccountCreationSuccess={this.onAccountCreationSuccess}
+          />
         </div>
         <div className="homepage__explanations-section">
           <HomePageExplanations />

@@ -28,12 +28,17 @@ describe('<AccountCreationForm/>', () => {
     expect(wrapper.find('form input')).to.have.length(4);
   });
 
-  it('renders required error on email field', () => {
+  it('renders required error on all required fields', () => {
     const wrapper = mount(givenDefaultAccountCreationForm());
 
     triggerFormSubmit(wrapper);
 
     expect(findFormInputError(wrapper, 'email').text()).to.equal('Required');
+    expect(findFormInputError(wrapper, 'pseudo').text()).to.equal('Required');
+    expect(findFormInputError(wrapper, 'password').text()).to.equal('Required');
+    expect(findFormInputError(wrapper, 'passwordConfirmation').text()).to.equal(
+      'Required'
+    );
   });
 
   it('does not render any error on email field if provided', () => {
@@ -45,14 +50,6 @@ describe('<AccountCreationForm/>', () => {
     expect(findFormInputError(wrapper, 'email')).to.have.length(0);
   });
 
-  it('renders required error on pseudo field', () => {
-    const wrapper = mount(givenDefaultAccountCreationForm());
-
-    triggerFormSubmit(wrapper);
-
-    expect(findFormInputError(wrapper, 'pseudo').text()).to.equal('Required');
-  });
-
   it('does not render any error on pseudo field if provided', () => {
     const wrapper = mount(givenDefaultAccountCreationForm());
 
@@ -60,14 +57,6 @@ describe('<AccountCreationForm/>', () => {
     triggerFormSubmit(wrapper);
 
     expect(findFormInputError(wrapper, 'pseudo')).to.have.length(0);
-  });
-
-  it('renders required error on password field', () => {
-    const wrapper = mount(givenDefaultAccountCreationForm());
-
-    triggerFormSubmit(wrapper);
-
-    expect(findFormInputError(wrapper, 'password').text()).to.equal('Required');
   });
 
   it('does not render any error on password field if provided', () => {
@@ -78,16 +67,6 @@ describe('<AccountCreationForm/>', () => {
     triggerFormSubmit(wrapper);
 
     expect(findFormInputError(wrapper, 'password')).to.have.length(0);
-  });
-
-  it('renders required error on password confirmation field', () => {
-    const wrapper = mount(givenDefaultAccountCreationForm());
-
-    triggerFormSubmit(wrapper);
-
-    expect(findFormInputError(wrapper, 'passwordConfirmation').text()).to.equal(
-      'Required'
-    );
   });
 
   it('renders error on password confirmation field if different than password', () => {
@@ -114,11 +93,7 @@ describe('<AccountCreationForm/>', () => {
 
   it('triggers submit function if all fields filled', () => {
     const onSubmitSpy = sinon.spy();
-    const wrapper = mount(
-      <Provider store={store}>
-        <AccountCreationForm onSubmit={onSubmitSpy} />
-      </Provider>
-    );
+    const wrapper = mount(givenDefaultAccountCreationForm(onSubmitSpy));
 
     setFormInputValue(wrapper, 'email', 'my-email@wye.com');
     setFormInputValue(wrapper, 'pseudo', 'my-pseudo');
@@ -131,11 +106,7 @@ describe('<AccountCreationForm/>', () => {
 
   it('does not trigger submit function if not all fields filled', () => {
     const onSubmitSpy = sinon.spy();
-    const wrapper = mount(
-      <Provider store={store}>
-        <AccountCreationForm onSubmit={onSubmitSpy} />
-      </Provider>
-    );
+    const wrapper = mount(givenDefaultAccountCreationForm(onSubmitSpy));
 
     triggerFormSubmit(wrapper);
 
@@ -143,8 +114,10 @@ describe('<AccountCreationForm/>', () => {
   });
 });
 
-export function givenDefaultAccountCreationForm() {
-  function onSubmit() {}
+export function givenDefaultAccountCreationForm(onSubmitCallback) {
+  function onSubmitEmpty() {}
+  const onSubmit = onSubmitCallback || onSubmitEmpty;
+
   return (
     <Provider store={store}>
       <AccountCreationForm onSubmit={onSubmit} />

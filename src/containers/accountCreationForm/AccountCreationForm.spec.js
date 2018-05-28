@@ -7,6 +7,11 @@ import sinon from 'sinon';
 
 import { wyeCreateStore } from '../../store';
 import AccountCreationForm from './AccountCreationForm';
+import { findFormInput } from '../../form/testHelpers/selectors';
+import {
+  setFormInputValue,
+  triggerFormSubmit
+} from '../../form/testHelpers/events';
 
 const initialState = {};
 let store = wyeCreateStore(initialState);
@@ -26,7 +31,7 @@ describe('<AccountCreationForm/>', () => {
   it('renders required error on email field', () => {
     const wrapper = mount(givenDefaultAccountCreationForm());
 
-    wrapper.find('form button[type="submit"]').simulate('submit');
+    triggerFormSubmit(wrapper);
 
     expect(wrapper.find('.email.error').text()).to.equal('Required');
   });
@@ -34,10 +39,8 @@ describe('<AccountCreationForm/>', () => {
   it('does not render any error on email field if provided', () => {
     const wrapper = mount(givenDefaultAccountCreationForm());
 
-    wrapper
-      .find('form input[name="email"]')
-      .simulate('change', { target: { value: 'my-email@wye.com' } });
-    wrapper.find('form button[type="submit"]').simulate('submit');
+    setFormInputValue(wrapper, 'email', 'my-email@wye.com');
+    triggerFormSubmit(wrapper);
 
     expect(wrapper.find('.email.error')).to.have.length(0);
   });
@@ -45,7 +48,7 @@ describe('<AccountCreationForm/>', () => {
   it('renders required error on pseudo field', () => {
     const wrapper = mount(givenDefaultAccountCreationForm());
 
-    wrapper.find('form button[type="submit"]').simulate('submit');
+    triggerFormSubmit(wrapper);
 
     expect(wrapper.find('.pseudo.error').text()).to.equal('Required');
   });
@@ -53,10 +56,8 @@ describe('<AccountCreationForm/>', () => {
   it('does not render any error on pseudo field if provided', () => {
     const wrapper = mount(givenDefaultAccountCreationForm());
 
-    wrapper
-      .find('form input[name="pseudo"]')
-      .simulate('change', { target: { value: 'my-pseudo' } });
-    wrapper.find('form button[type="submit"]').simulate('submit');
+    setFormInputValue(wrapper, 'pseudo', 'my-pseudo');
+    triggerFormSubmit(wrapper);
 
     expect(wrapper.find('.pseudo.error')).to.have.length(0);
   });
@@ -64,7 +65,7 @@ describe('<AccountCreationForm/>', () => {
   it('renders required error on password field', () => {
     const wrapper = mount(givenDefaultAccountCreationForm());
 
-    wrapper.find('form button[type="submit"]').simulate('submit');
+    triggerFormSubmit(wrapper);
 
     expect(wrapper.find('.password.error').text()).to.equal('Required');
   });
@@ -72,10 +73,9 @@ describe('<AccountCreationForm/>', () => {
   it('does not render any error on password field if provided', () => {
     const wrapper = mount(givenDefaultAccountCreationForm());
 
-    wrapper
-      .find('form input[name="password"]')
-      .simulate('change', { target: { value: 'my-password' } });
-    wrapper.find('form button[type="submit"]').simulate('submit');
+    setFormInputValue(wrapper, 'password', 'my-password');
+
+    triggerFormSubmit(wrapper);
 
     expect(wrapper.find('.password.error')).to.have.length(0);
   });
@@ -83,7 +83,7 @@ describe('<AccountCreationForm/>', () => {
   it('renders required error on password confirmation field', () => {
     const wrapper = mount(givenDefaultAccountCreationForm());
 
-    wrapper.find('form button[type="submit"]').simulate('submit');
+    triggerFormSubmit(wrapper);
 
     expect(wrapper.find('.passwordConfirmation.error').text()).to.equal(
       'Required'
@@ -93,13 +93,9 @@ describe('<AccountCreationForm/>', () => {
   it('renders error on password confirmation field if different than password', () => {
     const wrapper = mount(givenDefaultAccountCreationForm());
 
-    wrapper
-      .find('form input[name="password"]')
-      .simulate('change', { target: { value: 'my-password' } });
-    wrapper
-      .find('form input[name="passwordConfirmation"]')
-      .simulate('change', { target: { value: 'a-different-password' } });
-    wrapper.find('form button[type="submit"]').simulate('submit');
+    setFormInputValue(wrapper, 'password', 'my-password');
+    setFormInputValue(wrapper, 'passwordConfirmation', 'a-different-password');
+    triggerFormSubmit(wrapper);
 
     expect(wrapper.find('.passwordConfirmation.error').text()).to.equal(
       'Not identical to password'
@@ -109,13 +105,9 @@ describe('<AccountCreationForm/>', () => {
   it('does not render any error on password confirmation field if provided and same as password', () => {
     const wrapper = mount(givenDefaultAccountCreationForm());
 
-    wrapper
-      .find('form input[name="password"]')
-      .simulate('change', { target: { value: 'my-password' } });
-    wrapper
-      .find('form input[name="passwordConfirmation"]')
-      .simulate('change', { target: { value: 'my-password' } });
-    wrapper.find('form button[type="submit"]').simulate('submit');
+    setFormInputValue(wrapper, 'password', 'my-password');
+    setFormInputValue(wrapper, 'passwordConfirmation', 'my-password');
+    triggerFormSubmit(wrapper);
 
     expect(wrapper.find('.passwordConfirmation.error')).to.have.length(0);
   });
@@ -128,19 +120,11 @@ describe('<AccountCreationForm/>', () => {
       </Provider>
     );
 
-    wrapper
-      .find('form input[name="email"]')
-      .simulate('change', { target: { value: 'my-email@wye.com' } });
-    wrapper
-      .find('form input[name="pseudo"]')
-      .simulate('change', { target: { value: 'my-pseudo' } });
-    wrapper
-      .find('form input[name="password"]')
-      .simulate('change', { target: { value: 'my-password' } });
-    wrapper
-      .find('form input[name="passwordConfirmation"]')
-      .simulate('change', { target: { value: 'my-password' } });
-    wrapper.find('form button[type="submit"]').simulate('submit');
+    setFormInputValue(wrapper, 'email', 'my-email@wye.com');
+    setFormInputValue(wrapper, 'pseudo', 'my-pseudo');
+    setFormInputValue(wrapper, 'password', 'my-password');
+    setFormInputValue(wrapper, 'passwordConfirmation', 'my-password');
+    triggerFormSubmit(wrapper);
 
     sinon.assert.calledOnce(onSubmitSpy);
   });
@@ -153,7 +137,7 @@ describe('<AccountCreationForm/>', () => {
       </Provider>
     );
 
-    wrapper.find('form button[type="submit"]').simulate('submit');
+    triggerFormSubmit(wrapper);
 
     sinon.assert.notCalled(onSubmitSpy);
   });

@@ -26,7 +26,7 @@ class AccountCreation extends React.Component {
 
     return (
       <Overlay onClose={this.onClose} displayOverlay={displayOverlay}>
-        <AccountCreationForm onLoginSuccess={onAccountCreationSuccess} />
+        <AccountCreationForm onSubmit={onAccountCreationSuccess} />
       </Overlay>
     );
   };

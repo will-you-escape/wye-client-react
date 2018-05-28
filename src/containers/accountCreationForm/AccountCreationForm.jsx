@@ -1,95 +1,71 @@
 import React from 'react';
+import { Field, reduxForm } from 'redux-form';
 
 import Button from '../../components/Button';
+import InputField from '../../form/fields/InputField';
+import { required } from '../../form/validators';
 
 class AccountCreationForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      pseudo: '',
-      password: '',
-      passwordConfirmation: ''
-    };
-  }
-
-  handleChangeEmail = event => {
-    this.setState({
-      email: event.target.value
-    });
-  };
-
-  handleChangePseudo = event => {
-    this.setState({
-      pseudo: event.target.value
-    });
-  };
-
-  handleChangePassword = event => {
-    this.setState({
-      password: event.target.value
-    });
-  };
-
-  handleChangePasswordConfirmation = event => {
-    this.setState({
-      passwordConfirmation: event.target.value
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    const { onAccountCreationSuccess } = this.props;
-
-    onAccountCreationSuccess();
-  };
-
   render() {
+    const { handleSubmit } = this.props;
+
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div>
-            <label>Email</label>
-            <input
-              type="text"
+            <label htmlFor="email">Email</label>
+            <Field
               name="email"
-              value={this.state.email}
-              onChange={this.handleChangeEmail}
+              component={InputField}
+              type="email"
+              validate={[required]}
             />
           </div>
           <div>
-            <label>Pseudo</label>
-            <input
+            <label htmlFor="pseudo">Pseudo</label>
+            <Field
+              name="pseudo"
+              component={InputField}
               type="text"
-              value={this.state.pseudo}
-              onChange={this.handleChangePseudo}
+              validate={[required]}
             />
           </div>
           <div>
-            <label>Password</label>
-            <input
-              type="password"
+            <label htmlFor="password">Password</label>
+            <Field
               name="password"
-              value={this.state.password}
-              onChange={this.handleChangePassword}
+              component={InputField}
+              type="password"
+              validate={[required]}
             />
           </div>
           <div>
-            <label>Password Confirmation</label>
-            <input
-              type="text"
-              name="email"
-              value={this.state.passwordConfirmation}
-              onChange={this.handleChangePasswordConfirmation}
+            <label htmlFor="passwordConfirmation">Password Confirmation</label>
+            <Field
+              name="passwordConfirmation"
+              component={InputField}
+              type="password"
+              validate={[required]}
             />
           </div>
-          <div>
-            <Button>Sign Up</Button>
-          </div>
+          <Button type="submit">Create account</Button>
         </form>
       </div>
     );
   }
 }
+
+const validate = values => {
+  const errors = {};
+  if (values.password !== values.passwordConfirmation) {
+    errors.passwordConfirmation = 'Not identical to password';
+  }
+  return errors;
+};
+
+AccountCreationForm = reduxForm({
+  form: 'accountCreation',
+  validate
+})(AccountCreationForm);
 
 export default AccountCreationForm;

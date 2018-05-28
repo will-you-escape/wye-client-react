@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import auth from './authReducers';
+import { reducer as formReducer } from 'redux-form';
+import authReducer from './authReducer';
 
 const wyeReducers = combineReducers({
-  auth
+  auth: authReducer,
+  form: formReducer
 });
 
 export default wyeReducers;

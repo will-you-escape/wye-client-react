@@ -2,11 +2,11 @@ import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 
-import configureStore from 'redux-mock-store';
-
 import HomePageConnected from './HomePage';
 import { HomePage } from './HomePage';
 import HeaderLogin from '../components/login/HeaderLogin';
+
+import { wyeCreateStore } from '../store';
 
 describe('<HomePage/>', () => {
   describe('not logged', () => {
@@ -27,11 +27,10 @@ describe('<HomePage/>', () => {
 });
 
 describe('<HomePage/> connected', () => {
-  const mockStore = configureStore();
-
   describe('passes loggedIn argument from the store', () => {
     it('if not logged', () => {
-      const store = mockStore({
+      const initialState = {};
+      const store = wyeCreateStore({
         auth: {
           logged: false
         }
@@ -41,7 +40,7 @@ describe('<HomePage/> connected', () => {
     });
 
     it('if logged', () => {
-      const store = mockStore({
+      const store = wyeCreateStore({
         auth: {
           logged: true
         }

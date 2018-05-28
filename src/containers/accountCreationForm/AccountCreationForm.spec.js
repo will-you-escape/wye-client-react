@@ -7,7 +7,7 @@ import sinon from 'sinon';
 
 import { wyeCreateStore } from '../../store';
 import AccountCreationForm from './AccountCreationForm';
-import { findFormInput } from '../../form/testHelpers/selectors';
+import { findFormInputError } from '../../form/testHelpers/selectors';
 import {
   setFormInputValue,
   triggerFormSubmit
@@ -33,7 +33,7 @@ describe('<AccountCreationForm/>', () => {
 
     triggerFormSubmit(wrapper);
 
-    expect(wrapper.find('.email.error').text()).to.equal('Required');
+    expect(findFormInputError(wrapper, 'email').text()).to.equal('Required');
   });
 
   it('does not render any error on email field if provided', () => {
@@ -42,7 +42,7 @@ describe('<AccountCreationForm/>', () => {
     setFormInputValue(wrapper, 'email', 'my-email@wye.com');
     triggerFormSubmit(wrapper);
 
-    expect(wrapper.find('.email.error')).to.have.length(0);
+    expect(findFormInputError(wrapper, 'email')).to.have.length(0);
   });
 
   it('renders required error on pseudo field', () => {
@@ -50,7 +50,7 @@ describe('<AccountCreationForm/>', () => {
 
     triggerFormSubmit(wrapper);
 
-    expect(wrapper.find('.pseudo.error').text()).to.equal('Required');
+    expect(findFormInputError(wrapper, 'pseudo').text()).to.equal('Required');
   });
 
   it('does not render any error on pseudo field if provided', () => {
@@ -59,7 +59,7 @@ describe('<AccountCreationForm/>', () => {
     setFormInputValue(wrapper, 'pseudo', 'my-pseudo');
     triggerFormSubmit(wrapper);
 
-    expect(wrapper.find('.pseudo.error')).to.have.length(0);
+    expect(findFormInputError(wrapper, 'pseudo')).to.have.length(0);
   });
 
   it('renders required error on password field', () => {
@@ -67,7 +67,7 @@ describe('<AccountCreationForm/>', () => {
 
     triggerFormSubmit(wrapper);
 
-    expect(wrapper.find('.password.error').text()).to.equal('Required');
+    expect(findFormInputError(wrapper, 'password').text()).to.equal('Required');
   });
 
   it('does not render any error on password field if provided', () => {
@@ -77,7 +77,7 @@ describe('<AccountCreationForm/>', () => {
 
     triggerFormSubmit(wrapper);
 
-    expect(wrapper.find('.password.error')).to.have.length(0);
+    expect(findFormInputError(wrapper, 'password')).to.have.length(0);
   });
 
   it('renders required error on password confirmation field', () => {
@@ -85,7 +85,7 @@ describe('<AccountCreationForm/>', () => {
 
     triggerFormSubmit(wrapper);
 
-    expect(wrapper.find('.passwordConfirmation.error').text()).to.equal(
+    expect(findFormInputError(wrapper, 'passwordConfirmation').text()).to.equal(
       'Required'
     );
   });

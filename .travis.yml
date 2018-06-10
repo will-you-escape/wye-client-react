@@ -12,3 +12,8 @@ script:
 
 install:
   - npm install
+
+deploy:
+  provider: surge
+  domain: wye.surge.sh
+  on: master

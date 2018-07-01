@@ -7,7 +7,7 @@ import Footer from '../containers/footer/Footer';
 
 import './homepage.css';
 
-export class HomePage extends React.Component {
+class HomePage extends React.Component {
   render() {
     const { loggedIn } = this.props;
 

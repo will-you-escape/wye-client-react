@@ -1,12 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import HomePageExplanations from './HomePageExplanations';
 import HomePageTitle from './HomePageTitle';
 import AccountCreation from '../components/accountCreation/AccountCreation';
 
 class HomePageContent extends React.Component {
-  onAccountCreationSuccess = () => {
-    console.log('Account creation successful');
+  onAccountCreationSuccess = data => {
+    const { dispatch } = this.props;
+    dispatch({ type: 'ACCOUNT_CREATION_REQUESTED', payload: { data: data } });
   };
 
   render() {
@@ -26,4 +28,4 @@ class HomePageContent extends React.Component {
   }
 }
 
-export default HomePageContent;
+export default connect()(HomePageContent);

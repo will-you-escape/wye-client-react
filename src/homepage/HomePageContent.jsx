@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import HomePageExplanations from './HomePageExplanations';
 import HomePageTitle from './HomePageTitle';
 import AccountCreation from '../components/accountCreation/AccountCreation';
+import { accountCreationRequested } from '../reducers/actions';
 
 class HomePageContent extends React.Component {
   onAccountCreationSuccess = data => {
-    const { dispatch } = this.props;
-    dispatch({ type: 'ACCOUNT_CREATION_REQUESTED', payload: { data: data } });
+    const { accountCreationRequested } = this.props;
+    accountCreationRequested(data);
   };
 
   render() {
@@ -28,4 +29,8 @@ class HomePageContent extends React.Component {
   }
 }
 
-export default connect()(HomePageContent);
+const mapDispatchToProps = dispatch => ({
+  accountCreationRequested: data => dispatch(accountCreationRequested(data))
+});
+
+export default connect(null, mapDispatchToProps)(HomePageContent);

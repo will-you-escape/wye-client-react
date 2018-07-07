@@ -1,9 +1,10 @@
 import 'whatwg-fetch';
 
-const HOST = 'http://localhost/';
-const GRAPHQL_ENDPOINT = HOST + 'graphql/';
+import { getGraphQLEndpointURL } from '../config/server';
 
 export function apiCreateAccount(data) {
+  const GRAPHQL_ENDPOINT = getGraphQLEndpointURL();
+
   return fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {

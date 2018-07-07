@@ -13,8 +13,16 @@ import {
 } from '../form/testHelpers/events';
 
 describe('<HomePageContent/>', () => {
+  let env;
+
+  beforeEach(() => {
+    env = process.env;
+    process.env.REACT_APP_SERVER_ROOT_URL = 'https://my.server.wye/';
+  });
+
   afterEach(() => {
     fetchMock.restore();
+    process.env = env;
   });
 
   describe('account creation form', () => {
@@ -25,7 +33,7 @@ describe('<HomePageContent/>', () => {
           <HomePageContent />
         </Provider>
       );
-      fetchMock.post('http://localhost/graphql/', {});
+      fetchMock.post('https://my.server.wye/graphql/', {});
 
       // Open the account creation form
       findSignupButton(wrapper).simulate('click');
@@ -40,7 +48,9 @@ describe('<HomePageContent/>', () => {
       const fetchCall = firstFetchCall();
 
       expect(fetchCall).not.to.be.undefined;
-      expect(getFetchCallURL(fetchCall)).to.equal('http://localhost/graphql/');
+      expect(getFetchCallURL(fetchCall)).to.equal(
+        'https://my.server.wye/graphql/'
+      );
     });
 
     it('does not send data to server when data is not valid', () => {

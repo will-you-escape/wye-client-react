@@ -1,8 +1,20 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
 import wyeReducers from './reducers/index';
+import wyeSaga from './reducers/sagas';
 import { DEBUG_TOOLS } from './debug';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware();
+
+const enhancers = composeEnhancers(applyMiddleware(sagaMiddleware));
+
 export function wyeCreateStore(initialState = undefined) {
-  return createStore(wyeReducers, initialState, DEBUG_TOOLS);
+  const store = createStore(wyeReducers, initialState, enhancers);
+  sagaMiddleware.run(wyeSaga);
+
+  return store;
 }

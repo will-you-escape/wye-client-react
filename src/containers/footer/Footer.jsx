@@ -8,10 +8,10 @@ class Footer extends React.Component {
       <footer>
         <ul>
           <li>
-            <a href="#">Who are we?</a>
+            <a href="/">Who are we?</a>
           </li>
           <li>
-            <a href="#">Contact us</a>
+            <a href="/">Contact us</a>
           </li>
         </ul>
       </footer>

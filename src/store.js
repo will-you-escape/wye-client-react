@@ -3,7 +3,6 @@ import createSagaMiddleware from 'redux-saga';
 
 import wyeReducers from './reducers/index';
 import wyeSaga from './reducers/sagas';
-import { DEBUG_TOOLS } from './debug';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

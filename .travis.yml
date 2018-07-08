@@ -13,7 +13,18 @@ script:
 install:
   - npm install
 
+before_deploy:
+  # That's not obvious here, but environment variables are used during this build,
+  # like REACT_APP_SERVER_ROOL_URL, to get the environment right when generating static files.
+  # These environment variables are configured on Travis-CI website (project settings). 
+  - npm run build
+
 deploy:
   provider: surge
   domain: wye.surge.sh
   on: master
+  # This `skip_cleanup` is important, as it prevents Travis-CI to cleanup the files
+  # generated in the `build` folder by the `before_deploy:` section above...
+  skip_cleanup: true
+  # ...which can then be deployed to surge.sh from this `build` folder.
+  project: ./build/

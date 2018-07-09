@@ -8,8 +8,7 @@ import { accountCreationRequested } from '../reducers/actions';
 
 class HomePageContent extends React.Component {
   onAccountCreationSuccess = data => {
-    const { accountCreationRequested } = this.props;
-    accountCreationRequested(data);
+    this.props.accountCreationRequested(data);
   };
 
   render() {

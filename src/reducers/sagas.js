@@ -4,7 +4,7 @@ import { apiCreateAccount } from '../api/user';
 // worker Saga: will be fired on ACCOUNT_CREATION_REQUESTED actions
 function* createAccount(action) {
   try {
-    const account = yield call(apiCreateAccount, action.payload.data);
+    const account = yield call(apiCreateAccount, action.payload);
     yield put({ type: 'ACCOUNT_CREATION_SUCCEEDED', account: account });
   } catch (e) {
     yield put({ type: 'ACCOUNT_CREATION_FAILED', message: e.message });

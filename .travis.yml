@@ -18,6 +18,7 @@ before_deploy:
   # like REACT_APP_SERVER_ROOL_URL, to get the environment right when generating static files.
   # These environment variables are configured on Travis-CI website (project settings). 
   - npm run build
+  - cp $TRAVIS_BUILD_DIR/CNAME $TRAVIS_BUILD_DIR/build/
 
 deploy:
   provider: surge

@@ -18,11 +18,12 @@ before_deploy:
   # like REACT_APP_SERVER_ROOL_URL, to get the environment right when generating static files.
   # These environment variables are configured on Travis-CI website (project settings). 
   - npm run build
+  # The CNAME file is used by surge.sh to automatically detect under which domain name
+  # the project should be deployed.
   - cp $TRAVIS_BUILD_DIR/CNAME $TRAVIS_BUILD_DIR/build/
 
 deploy:
   provider: surge
-  domain: wye.surge.sh
   on: master
   # This `skip_cleanup` is important, as it prevents Travis-CI to cleanup the files
   # generated in the `build` folder by the `before_deploy:` section above...

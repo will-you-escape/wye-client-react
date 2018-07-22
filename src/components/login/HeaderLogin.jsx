@@ -26,7 +26,7 @@ class HeaderLogin extends React.Component {
 
     return (
       <Overlay onClose={this.onClose} displayOverlay={displayOverlay}>
-        <LoginForm onLoginSuccess={onLoginSuccess} />
+        <LoginForm onSubmit={onLoginSuccess} />
       </Overlay>
     );
   };

@@ -1,69 +1,44 @@
 import React from 'react';
+import { Field, reduxForm } from 'redux-form';
 
 import Button from '../../components/Button';
-import auth from '../../auth/core';
+import InputField from '../../form/fields/InputField';
+import { required } from '../../form/validators';
 
 class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { email: '', password: '' };
-  }
-
-  handleChangeEmail = event => {
-    this.setState({
-      email: event.target.value
-    });
-  };
-
-  handleChangePassword = event => {
-    this.setState({
-      password: event.target.value
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    const { onLoginSuccess } = this.props;
-
-    auth
-      .login(this.state.email, this.state.password)
-      .then(response => {
-        onLoginSuccess();
-      })
-      .catch(error => {
-        alert(error);
-      });
-  };
-
   render() {
+    const { handleSubmit } = this.props;
+
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div>
-            <label>Email</label>
-            <input
-              type="text"
+            <label htmlFor="email">Email</label>
+            <Field
               name="email"
-              value={this.state.email}
-              onChange={this.handleChangeEmail}
+              component={InputField}
+              type="email"
+              validate={[required]}
             />
           </div>
           <div>
-            <label>Password</label>
-            <input
-              type="password"
+            <label htmlFor="password">Password</label>
+            <Field
               name="password"
-              value={this.state.password}
-              onChange={this.handleChangePassword}
+              component={InputField}
+              type="password"
+              validate={[required]}
             />
           </div>
-          <div>
-            <Button>Login</Button>
-          </div>
+          <Button type="submit">Login</Button>
         </form>
       </div>
     );
   }
 }
+
+LoginForm = reduxForm({
+  form: 'login'
+})(LoginForm);
 
 export default LoginForm;

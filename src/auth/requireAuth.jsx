@@ -1,7 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-
-import authCore from './core';
 
 export default function requireAuth(Component) {
   class AuthenticatedComponent extends React.Component {
@@ -10,7 +9,9 @@ export default function requireAuth(Component) {
     }
 
     checkAuth() {
-      if (!authCore.loggedIn()) {
+      const { loggedIn } = this.props;
+
+      if (!loggedIn) {
         // Currently commented, but will be used in the future...
         // const location = this.props.location;
         // const redirect = location.pathname + location.search;
@@ -19,9 +20,16 @@ export default function requireAuth(Component) {
     }
 
     render() {
-      return authCore.loggedIn() ? <Component {...this.props} /> : null;
+      const { loggedIn } = this.props;
+      return loggedIn ? <Component {...this.props} /> : null;
     }
   }
 
-  return withRouter(AuthenticatedComponent);
+  const mapStateToProps = state => {
+    return {
+      loggedIn: state.auth.logged
+    };
+  };
+
+  return withRouter(connect(mapStateToProps)(AuthenticatedComponent));
 }

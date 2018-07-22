@@ -5,16 +5,15 @@ import Logo from '../../components/logo/Logo';
 import './header.css';
 
 class Header extends React.Component {
-  onLoginSuccess = () => {};
-
   render() {
+    const { onLoginSuccess } = this.props;
     return (
       <div className="main-header">
         <div className="main-header__element">
           <Logo />
         </div>
         <div className="main-header__element">
-          <HeaderLogin onLoginSuccess={this.onLoginSuccess} />
+          <HeaderLogin onLoginSuccess={onLoginSuccess} />
         </div>
       </div>
     );

@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 
 import { getGraphQLEndpointURL } from '../config/server';
 
-function buildLogUserPayload(email, password) {
+function buildLogInUserPayload(email, password) {
   return {
     query: `mutation($email: String!, $password: String!) {
       logUser(email: $email, password: $password) {
@@ -16,9 +16,9 @@ function buildLogUserPayload(email, password) {
   };
 }
 
-export function apiLogUser(data) {
+export function apiLogInUser(data) {
   const GRAPHQL_ENDPOINT = getGraphQLEndpointURL();
-  const payload = buildLogUserPayload(data.email, data.password);
+  const payload = buildLogInUserPayload(data.email, data.password);
 
   return fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',

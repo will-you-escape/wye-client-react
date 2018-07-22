@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Button from '../components/Button';
 import auth from '../auth/core';
-import { logOutUser } from '../actions';
+import { logOutUser } from '../reducers/actions';
 
 class LogoutForm extends React.Component {
   handleSubmit = event => {

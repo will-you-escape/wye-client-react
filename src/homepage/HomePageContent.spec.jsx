@@ -60,7 +60,7 @@ describe('<HomePageContent/>', () => {
           <HomePageContent />
         </Provider>
       );
-      fetchMock.post('http://localhost/graphql/', {});
+      fetchMock.post('https://my.server.wye/graphql/', {});
 
       // Open the account creation form
       findSignupButton(wrapper).simulate('click');

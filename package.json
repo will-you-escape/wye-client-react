@@ -5,6 +5,7 @@
   "dependencies": {
     "husky": "^0.14.3",
     "lint-staged": "^6.1.0",
+    "lodash": "^4.17.10",
     "prettier": "^1.10.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -33,6 +34,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "fetch-mock": "^6.5.0",
+    "redux-logger": "^3.0.6",
     "sinon": "^4.5.0"
   },
   "lint-staged": {

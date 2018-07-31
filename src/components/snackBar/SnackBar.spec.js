@@ -22,15 +22,20 @@ describe('<SnackBar/>', () => {
     let store = wyeCreateStore(initialState);
     const wrapper = mount(givenDefaultSnackBar(store));
 
-    const snackBarArea = findSnackBarArea(wrapper);
-    expect(snackBarArea.text()).to.have.string('Internal server error');
-    expect(snackBarArea.text()).to.have.string(
+    expect(findSnackBarTitle(wrapper).text()).to.have.string(
+      'Internal server error'
+    );
+    expect(findSnackBarMessage(wrapper).text()).to.have.string(
       'An internal server error occured. Please retry again later.'
     );
   });
 
-  function findSnackBarArea(wrapper) {
-    return wrapper.find('.snackbar');
+  function findSnackBarTitle(wrapper) {
+    return wrapper.find('.snackbar__title');
+  }
+
+  function findSnackBarMessage(wrapper) {
+    return wrapper.find('.snackbar__message');
   }
 });
 

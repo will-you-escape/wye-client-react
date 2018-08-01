@@ -1,22 +1,36 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 
 import Button from '../Button';
 import CloseSign from '../overlay/CloseSign';
 import { closeSnackBar } from './actions';
 
-class SnackBar extends React.Component {
-  render() {
-    const { shouldDisplay, notification, onClose } = this.props;
+import './SnackBar.css';
 
-    return shouldDisplay ? (
-      <div className="snackbar">
+class SnackBar extends React.Component {
+  renderSnackBarContent() {
+    const { notification, onClose } = this.props;
+
+    return (
+      <div className={classNames('snackbar', notification.severity)}>
         <CloseSign onClose={onClose} />
         <h1 className="snackbar__title">{notification.title}</h1>
         <p className="snackbar__message">{notification.message}</p>
         <Button onClick={onClose}>Got it!</Button>
       </div>
-    ) : null;
+    );
+  }
+
+  render() {
+    const { shouldDisplay } = this.props;
+    const snackBarRootNode = document.body;
+
+    return shouldDisplay
+      ? ReactDOM.createPortal(this.renderSnackBarContent(), snackBarRootNode)
+      : null;
   }
 }
 

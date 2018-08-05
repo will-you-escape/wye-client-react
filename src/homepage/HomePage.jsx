@@ -5,6 +5,7 @@ import { logInUser } from '../reducers/actions';
 import Header from '../containers/header/Header';
 import HomePageContent from './HomePageContent';
 import Footer from '../containers/footer/Footer';
+import SnackBar from '../components/snackBar/SnackBar';
 
 import './homepage.css';
 
@@ -14,6 +15,7 @@ class HomePage extends React.Component {
 
     return (
       <div className="app">
+        <SnackBar />
         <Header loggedIn={loggedIn} onLoginSuccess={logInUser} />
         <HomePageContent />
         <Footer />

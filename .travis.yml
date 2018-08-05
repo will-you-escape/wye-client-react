@@ -21,6 +21,10 @@ before_deploy:
   # The CNAME file is used by surge.sh to automatically detect under which domain name
   # the project should be deployed.
   - cp $TRAVIS_BUILD_DIR/CNAME $TRAVIS_BUILD_DIR/build/
+  # Ensure that the client will always reach the router on surge.sh by adding a 200.html file.
+  # Used when the user tries to directly access a specific URL different than the root one.
+  # See https://surge.sh/help/adding-a-200-page-for-client-side-routing for more information.
+  - cp $TRAVIS_BUILD_DIR/index.html $TRAVIS_BUILD_DIR/build/200.html
 
 deploy:
   provider: surge

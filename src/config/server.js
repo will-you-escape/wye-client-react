@@ -14,3 +14,8 @@ export function getGraphQLEndpointURL() {
   const serverRootURL = getServerRootURL();
   return urljoin(serverRootURL, 'graphql/');
 }
+
+export function getGraphQLPrivateEndpointURL() {
+  const serverRootURL = getServerRootURL();
+  return urljoin(serverRootURL, 'private_graphql/');
+}

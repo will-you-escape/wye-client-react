@@ -1,6 +1,10 @@
 import 'whatwg-fetch';
 
-import { getGraphQLEndpointURL } from '../config/server';
+import {
+  getGraphQLEndpointURL,
+  getGraphQLPrivateEndpointURL
+} from '../config/server';
+import { getCSRFTokenCookieValue } from './cookies';
 
 function buildLogInUserPayload(email, password) {
   return {
@@ -14,6 +18,35 @@ function buildLogInUserPayload(email, password) {
     }`,
     variables: { email, password }
   };
+}
+
+function buildLogOutUserPayload() {
+  return {
+    query: `mutation {
+      logoutUser {
+        user {
+          email
+        }
+      }
+    }`
+  };
+}
+
+export function apiLogOutUser(data) {
+  const GRAPHQL_ENDPOINT = getGraphQLPrivateEndpointURL();
+  const payload = buildLogOutUserPayload();
+
+  return fetch(GRAPHQL_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': getCSRFTokenCookieValue()
+    },
+    // Used to tell the server to send the Set-Cookie response header
+    // containing user credentials (sessionid in case of Django basic auth)
+    credentials: 'include',
+    body: JSON.stringify(payload)
+  });
 }
 
 export function apiLogInUser(data) {

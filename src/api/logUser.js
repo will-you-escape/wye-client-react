@@ -9,7 +9,7 @@ import { getCSRFTokenCookieValue } from './cookies';
 function buildLogInUserPayload(email, password) {
   return {
     query: `mutation($email: String!, $password: String!) {
-      logUser(email: $email, password: $password) {
+      loginUser(email: $email, password: $password) {
         user {
           email,
           pseudo

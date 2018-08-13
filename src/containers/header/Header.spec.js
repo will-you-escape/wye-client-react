@@ -1,6 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
+import { Link, MemoryRouter } from 'react-router-dom';
 
 import Header from './Header';
 import Logo from '../../components/logo/Logo';
@@ -16,9 +17,18 @@ describe('<Header/>', () => {
     expect(findWYELogo(wrapper)).to.have.length(1);
   });
 
-  it('contains login area', () => {
+  it('contains login area when user not logged', () => {
     const wrapper = mount(givenDefaultHeader());
     expect(findLoginArea(wrapper)).to.have.length(1);
+  });
+
+  it('contains link to dashboard when user is logged', () => {
+    const wrapper = mount(
+      <MemoryRouter>
+        <Header loggedIn={true} />
+      </MemoryRouter>
+    );
+    expect(findDashboardLink(wrapper).prop('to')).to.equal('/my-account');
   });
 
   function findWYELogo(wrapper) {
@@ -27,6 +37,10 @@ describe('<Header/>', () => {
 
   function findLoginArea(wrapper) {
     return wrapper.find(HeaderLogin);
+  }
+
+  function findDashboardLink(wrapper) {
+    return wrapper.find(Link);
   }
 });
 

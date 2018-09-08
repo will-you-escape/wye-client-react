@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import AccountCreation from './AccountCreation';
-import Overlay from '../overlay/Overlay';
-import Button from '../Button';
+import Overlay from '../../../components/overlay/Overlay';
+import Button from '../../../components/Button';
 
 describe('<AccountCreation/>', () => {
   it('renders default AccountCreation', () => {

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Button from '../Button';
-import Overlay from '../overlay/Overlay';
-import LoginForm from '../../containers/LoginForm';
+import Button from '../../../components/Button';
+import Overlay from '../../../components/overlay/Overlay';
+import LoginForm from '../../../containers/LoginForm';
 
 class HeaderLogin extends React.Component {
   constructor(props) {

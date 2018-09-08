@@ -5,7 +5,7 @@ import { Link, MemoryRouter } from 'react-router-dom';
 
 import Header from './Header';
 import Logo from '../../components/logo/Logo';
-import HeaderLogin from '../../components/login/HeaderLogin';
+import HeaderLogin from './login/HeaderLogin';
 
 describe('<Header/>', () => {
   it('renders default Header', () => {

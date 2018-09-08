@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import fetchMock from 'fetch-mock';
 
 import HomePage from './HomePage';
-import HeaderLogin from '../components/login/HeaderLogin';
+import HeaderLogin from './header/login/HeaderLogin';
 import { wyeCreateStore } from '../store';
 import {
   setFormInputValue,

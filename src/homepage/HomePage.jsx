@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { logInUser } from '../reducers/actions';
-import Header from '../containers/header/Header';
-import HomePageContent from './HomePageContent';
-import Footer from '../containers/footer/Footer';
+import Header from './header/Header';
+import HomePageContent from './mainContent/HomePageContent';
+import Footer from './footer/Footer';
 import SnackBar from '../components/snackBar/SnackBar';
 
 import './homepage.css';

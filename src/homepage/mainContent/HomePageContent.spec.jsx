@@ -6,11 +6,11 @@ import { mount } from 'enzyme';
 import fetchMock from 'fetch-mock';
 
 import HomePageContent from './HomePageContent';
-import { wyeCreateStore } from '../store';
+import { wyeCreateStore } from '../../store';
 import {
   setFormInputValue,
   triggerFormSubmit
-} from '../form/testHelpers/events';
+} from '../../form/testHelpers/events';
 
 describe('<HomePageContent/>', () => {
   let env;

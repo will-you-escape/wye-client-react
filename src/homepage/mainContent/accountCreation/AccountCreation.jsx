@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Button from '../Button';
-import Overlay from '../overlay/Overlay';
-import AccountCreationForm from '../../containers/accountCreationForm/AccountCreationForm';
+import Button from '../../../components/Button';
+import Overlay from '../../../components/overlay/Overlay';
+import AccountCreationForm from '../../../containers/accountCreationForm/AccountCreationForm';
 
 class AccountCreation extends React.Component {
   constructor(props) {

@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import HomePageExplanations from './HomePageExplanations';
-import HomePageTitle from './HomePageTitle';
-import AccountCreation from '../components/accountCreation/AccountCreation';
-import { accountCreationRequested } from '../reducers/actions';
+import HomePageExplanations from './explanations/HomePageExplanations';
+import HomePageTitle from './title/HomePageTitle';
+import AccountCreation from './accountCreation/AccountCreation';
+import { accountCreationRequested } from '../../reducers/actions';
 
 class HomePageContent extends React.Component {
   onAccountCreationSuccess = data => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import HeaderLogin from '../../components/login/HeaderLogin';
+import HeaderLogin from './login/HeaderLogin';
 import Logo from '../../components/logo/Logo';
 import './header.css';
 

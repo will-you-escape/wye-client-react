@@ -20,37 +20,48 @@ describe('<App>', () => {
       sandbox.restore();
     });
 
-    it('detects that user is logged if whoami successful on app loading', () => {
+    it('detects that user is logged if whoami successful on app loading', done => {
       sandbox.stub(APIProvider, 'apiWhoAmI').resolves({ status: 200 });
 
       let store = wyeCreateStore();
       store.dispatch(initApp());
 
-      setTimeout(() => {
+      asyncAssertion(done, () => {
         expect(store.getState()['auth']['logged']).to.be.true;
-      }, 0);
+      });
     });
 
-    it('detects that user is not logged if whoami unauthorised on app loading', () => {
+    it('detects that user is not logged if whoami unauthorised on app loading', done => {
       sandbox.stub(APIProvider, 'apiWhoAmI').resolves({ status: 401 });
 
       let store = wyeCreateStore();
       store.dispatch(initApp());
 
-      setTimeout(() => {
+      asyncAssertion(done, () => {
         expect(store.getState()['auth']['logged']).to.be.false;
-      }, 0);
+      });
     });
 
-    it('detects that user is not logged if api error on app loading', () => {
+    it('detects that user is not logged if api error on app loading', done => {
       sandbox.stub(APIProvider, 'apiWhoAmI').resolves({ status: 500 });
 
       let store = wyeCreateStore();
       store.dispatch(initApp());
 
-      setTimeout(() => {
+      asyncAssertion(done, () => {
         expect(store.getState()['auth']['logged']).to.be.false;
-      }, 0);
+      });
     });
   });
 });
+
+function asyncAssertion(done, assertionFn) {
+  setTimeout(() => {
+    try {
+      assertionFn();
+      done();
+    } catch (e) {
+      done.fail(e);
+    }
+  }, 0);
+}

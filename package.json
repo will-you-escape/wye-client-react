@@ -12,21 +12,23 @@
     "lint-staged": "^6.1.0",
     "lodash": "^4.17.10",
     "prettier": "^1.10.2",
-    "react": "^16.2.0",
+    "react": "^16.9.0",
     "react-dom": "^16.2.0",
     "react-modal": "^3.3.2",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "^3.1.1",
+    "redux": "^4.0.4",
     "redux-form": "^7.3.0",
     "redux-saga": "^0.16.0",
     "styled-components": "^3.0.2",
-    "typescript": "^3.6.3",
+    "typescript": "^3.6.0",
     "url-join": "^4.0.0",
     "whatwg-fetch": "^2.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev-start": "REACT_APP_SERVER_ROOT_URL=http://local.api.wye.com:8000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
@@ -34,7 +36,7 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "@storybook/react": "^3.3.11",
+    "@storybook/react": "^5.2.0",
     "babel-core": "^6.26.0",
     "chai": "^4.1.2",
     "enzyme": "^3.3.0",
@@ -47,6 +49,18 @@
     "src/**/*.{js,jsx,json,css}": [
       "prettier --single-quote --write",
       "git add"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   }
 }

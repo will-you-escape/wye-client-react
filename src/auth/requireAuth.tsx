@@ -1,10 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 export default function requireAuth(Component) {
   class AuthenticatedComponent extends React.Component {
-    componentWillMount() {
+    componentDidMount() {
       this.checkAuth();
     }
 

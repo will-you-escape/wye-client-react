@@ -1,15 +1,26 @@
-let emptySnackBar = {
+interface ISnackBarStateContent {
+  title: string;
+  message: string;
+  severity: string;
+}
+
+export interface ISnackBarState {
+  readonly shouldDisplay: boolean;
+  readonly content: ISnackBarStateContent;
+}
+
+const initialSnackBar: ISnackBarState = {
   shouldDisplay: false,
   content: {
-    title: '',
-    message: '',
-    severity: ''
+    title: "",
+    message: "",
+    severity: ""
   }
 };
 
-const status = (state = emptySnackBar, action) => {
+const status = (state = initialSnackBar, action) => {
   switch (action.type) {
-    case 'SNACKBAR_OPEN':
+    case "SNACKBAR_OPEN":
       return Object.assign({}, state, {
         shouldDisplay: true,
         content: {
@@ -18,7 +29,7 @@ const status = (state = emptySnackBar, action) => {
           severity: action.payload.severity
         }
       });
-    case 'SNACKBAR_CLOSE':
+    case "SNACKBAR_CLOSE":
       return Object.assign({}, state, {
         shouldDisplay: false,
         content: {}

@@ -1,9 +1,9 @@
-const TOKEN = 'SIGNED_IN';
+const TOKEN = "SIGNED_IN";
 
 export default {
   requestAuth(email, password) {
     return new Promise((resolve, reject) => {
-      resolve(true, TOKEN);
+      resolve(TOKEN);
     });
   },
 

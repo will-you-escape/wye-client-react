@@ -2,6 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
+export interface OwnProps {
+  loggedIn: boolean;
+}
+
 export default function requireAuth(Component) {
   class AuthenticatedComponent extends React.Component {
     componentDidMount() {

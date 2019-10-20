@@ -6,7 +6,7 @@ import snackBarReducer, {
 } from "../components/snackBar/reducer";
 
 // The top-level state object
-export interface ApplicationState {
+export interface IApplicationState {
   auth: IAuthState;
   snackBar: ISnackBarState;
   form: FormReducer;

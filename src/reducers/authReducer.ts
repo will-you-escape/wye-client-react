@@ -6,7 +6,7 @@ const initialAuthState: IAuthState = {
   logged: false
 };
 
-const auth = (state = initialAuthState, action) => {
+const auth = (state: IAuthState = initialAuthState, action): IAuthState => {
   switch (action.type) {
     case "API_LOGGED_OUT":
       return Object.assign({}, state, {

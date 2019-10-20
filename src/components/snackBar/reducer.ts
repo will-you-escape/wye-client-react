@@ -18,7 +18,10 @@ const initialSnackBar: ISnackBarState = {
   }
 };
 
-const status = (state = initialSnackBar, action) => {
+const status = (
+  state: ISnackBarState = initialSnackBar,
+  action
+): ISnackBarState => {
   switch (action.type) {
     case "SNACKBAR_OPEN":
       return Object.assign({}, state, {

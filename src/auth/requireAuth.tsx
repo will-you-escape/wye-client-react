@@ -1,13 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
+import { IApplicationState } from "../reducers";
 
-export interface OwnProps {
+interface IStateToProps {
   loggedIn: boolean;
 }
 
 export default function requireAuth(Component) {
-  class AuthenticatedComponent extends React.Component {
+  class AuthenticatedComponent extends React.Component<
+    IStateToProps & RouteComponentProps<{}>,
+    {}
+  > {
     componentDidMount() {
       this.checkAuth();
     }
@@ -29,11 +33,15 @@ export default function requireAuth(Component) {
     }
   }
 
-  const mapStateToProps = state => {
+  const mapStateToProps = (state: IApplicationState): IStateToProps => {
     return {
       loggedIn: state.auth.logged
     };
   };
 
-  return withRouter(connect(mapStateToProps)(AuthenticatedComponent));
+  return withRouter(
+    connect<IStateToProps, void, IStateToProps, IApplicationState>(
+      mapStateToProps
+    )(AuthenticatedComponent)
+  );
 }

@@ -1,11 +1,26 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import React from "react";
+import { Field, reduxForm, InjectedFormProps } from "redux-form";
 
-import Button from '../../components/Button';
-import InputField from '../../form/fields/InputField';
-import { required } from '../../form/validators';
+import Button from "../../components/Button";
+import InputField from "../../form/fields/InputField";
+import { required } from "../../form/validators";
 
-class LoginForm extends React.Component {
+export interface IhandleSubmitFn {
+  (): void;
+}
+
+interface IProps {
+  handleSubmit: IhandleSubmitFn;
+}
+
+interface IUserLoginInformation {
+  email: string;
+  password: string;
+}
+
+class LoginForm extends React.Component<
+  InjectedFormProps<IUserLoginInformation> & IProps
+> {
   render() {
     const { handleSubmit } = this.props;
 
@@ -37,8 +52,6 @@ class LoginForm extends React.Component {
   }
 }
 
-LoginForm = reduxForm({
-  form: 'login'
+export default reduxForm<IUserLoginInformation, IProps>({
+  form: "login"
 })(LoginForm);
-
-export default LoginForm;

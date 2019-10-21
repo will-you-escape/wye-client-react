@@ -1,11 +1,29 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import React from "react";
+import { Field, reduxForm, InjectedFormProps } from "redux-form";
 
-import Button from '../../components/Button';
-import InputField from '../../form/fields/InputField';
-import { required } from '../../form/validators';
+import Button from "../../components/Button";
+import InputField from "../../form/fields/InputField";
+import { required } from "../../form/validators";
 
-class AccountCreationForm extends React.Component {
+interface IhandleSubmitFn {
+  (): void;
+}
+
+interface IProps {
+  handleSubmit: IhandleSubmitFn;
+}
+
+interface IUserInformation {
+  email: string;
+  pseudo: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
+class AccountCreationForm extends React.Component<
+  InjectedFormProps<IUserInformation> & IProps,
+  {}
+> {
   render() {
     const { handleSubmit } = this.props;
 
@@ -58,14 +76,12 @@ class AccountCreationForm extends React.Component {
 const validate = values => {
   const errors = {};
   if (values.password !== values.passwordConfirmation) {
-    errors.passwordConfirmation = 'Not identical to password';
+    errors["passwordConfirmation"] = "Not identical to password";
   }
   return errors;
 };
 
-AccountCreationForm = reduxForm({
-  form: 'accountCreation',
+export default reduxForm<IUserInformation, IProps>({
+  form: "accountCreation",
   validate
 })(AccountCreationForm);
-
-export default AccountCreationForm;

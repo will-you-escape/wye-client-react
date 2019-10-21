@@ -1,15 +1,28 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import { logInUser } from '../reducers/actions';
-import Header from './header/Header';
-import HomePageContent from './mainContent/HomePageContent';
-import Footer from './footer/Footer';
-import SnackBar from '../components/snackBar/SnackBar';
+import { logInUser } from "../reducers/actions";
+import Header from "./header/Header";
+import HomePageContent from "./mainContent/HomePageContent";
+import Footer from "./footer/Footer";
+import SnackBar from "../components/snackBar/SnackBar";
+import { IApplicationState } from "../reducers";
 
-import './homepage.css';
+import "./homepage.css";
 
-class HomePage extends React.Component {
+interface IhandleSubmitFn {
+  (): void;
+}
+
+interface IStateProps {
+  loggedIn: boolean;
+}
+
+interface IProps {
+  logInUser: IhandleSubmitFn;
+}
+
+class HomePage extends React.Component<IStateProps & IProps> {
   render() {
     const { loggedIn, logInUser } = this.props;
 
@@ -24,7 +37,7 @@ class HomePage extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: IApplicationState): IStateProps => {
   return {
     loggedIn: state.auth.logged
   };
@@ -34,4 +47,7 @@ const mapDispatchToProps = dispatch => ({
   logInUser: data => dispatch(logInUser(data))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect<IStateProps, void, IStateProps, IApplicationState>(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomePage);

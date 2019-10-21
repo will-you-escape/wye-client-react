@@ -1,4 +1,4 @@
-import { combineReducers, Reducer } from "redux";
+import { combineReducers } from "redux";
 import { reducer as formReducer, FormReducer } from "redux-form";
 import authReducer, { IAuthState } from "./authReducer";
 import snackBarReducer, {

@@ -1,12 +1,17 @@
-import React from 'react';
-import Modal from 'react-modal';
+import React from "react";
+import Modal from "react-modal";
 
-import CloseSign from './CloseSign';
-import './Overlay.css';
+import CloseSign, { IonCloseFn } from "./CloseSign";
+import "./Overlay.css";
 
-Modal.setAppElement('body');
+interface IProps {
+  onClose: IonCloseFn;
+  displayOverlay: boolean;
+}
 
-class Overlay extends React.Component {
+Modal.setAppElement("body");
+
+class Overlay extends React.Component<IProps, {}> {
   render() {
     const { onClose, displayOverlay } = this.props;
 

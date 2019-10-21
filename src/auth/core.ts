@@ -21,9 +21,9 @@ export default {
     });
   },
 
-  logout: function(callback) {
+  logout: function() {
     return new Promise((resolve, reject) => {
-      if (this.loggedOut(() => {})) {
+      if (this.loggedOut()) {
         resolve(true);
       }
       authAPI
@@ -44,7 +44,7 @@ export default {
     return authStorage.loggedIn();
   },
 
-  loggedOut: function(callback) {
+  loggedOut: function() {
     return authStorage.loggedOut(() => {});
   }
 };

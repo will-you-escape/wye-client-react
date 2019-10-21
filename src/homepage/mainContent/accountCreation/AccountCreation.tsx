@@ -1,11 +1,23 @@
-import React from 'react';
+import React from "react";
 
-import Button from '../../../components/Button';
-import Overlay from '../../../components/overlay/Overlay';
-import AccountCreationForm from '../../../containers/accountCreationForm/AccountCreationForm';
+import Button from "../../../components/Button";
+import Overlay from "../../../components/overlay/Overlay";
+import AccountCreationForm from "../../../containers/accountCreationForm/AccountCreationForm";
 
-class AccountCreation extends React.Component {
-  constructor(props) {
+interface ICallbackFn {
+  (): void;
+}
+
+interface IProps {
+  onAccountCreationSuccess: ICallbackFn;
+}
+
+interface ILocalStateProps {
+  overlayDisplay: boolean;
+}
+
+class AccountCreation extends React.Component<IProps, ILocalStateProps> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       overlayDisplay: false
@@ -26,7 +38,7 @@ class AccountCreation extends React.Component {
 
     return (
       <Overlay onClose={this.onClose} displayOverlay={displayOverlay}>
-        <AccountCreationForm onSubmit={onAccountCreationSuccess} />
+        <AccountCreationForm handleSubmit={onAccountCreationSuccess} />
       </Overlay>
     );
   };

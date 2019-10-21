@@ -1,6 +1,11 @@
-import React from 'react';
+import React from "react";
 
-class HomePageExplanationsBlock extends React.Component {
+interface IProps {
+  text: string;
+  picture: string;
+}
+
+class HomePageExplanationsBlock extends React.Component<IProps> {
   render() {
     const { text, picture } = this.props;
 

@@ -1,13 +1,17 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-class AuthStatus extends React.Component {
+interface IProps {
+  loggedIn: boolean;
+}
+
+class AuthStatus extends React.Component<IProps, {}> {
   render() {
     const { loggedIn } = this.props;
 
     return (
       <div>
-        <p>User logged in: {loggedIn ? 'YES!' : 'NO'}</p>
+        <p>User logged in: {loggedIn ? "YES!" : "NO"}</p>
       </div>
     );
   }
@@ -19,6 +23,9 @@ const mapStateToProps = state => {
   };
 };
 
-const ConnectedAuthStatus = connect(mapStateToProps, null)(AuthStatus);
+const ConnectedAuthStatus = connect(
+  mapStateToProps,
+  null
+)(AuthStatus);
 
 export default ConnectedAuthStatus;

@@ -1,10 +1,10 @@
-import 'whatwg-fetch';
+import "whatwg-fetch";
 
 import {
   getGraphQLEndpointURL,
   getGraphQLPrivateEndpointURL
-} from '../config/server';
-import { getCSRFTokenCookieValue } from './cookies';
+} from "../config/server";
+import { getCSRFTokenCookieValue } from "./cookies";
 
 function buildLogInUserPayload(email, password) {
   return {
@@ -32,19 +32,19 @@ function buildLogOutUserPayload() {
   };
 }
 
-export function apiLogOutUser(data) {
+export function apiLogOutUser() {
   const GRAPHQL_ENDPOINT = getGraphQLPrivateEndpointURL();
   const payload = buildLogOutUserPayload();
 
   return fetch(GRAPHQL_ENDPOINT, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'X-CSRFToken': getCSRFTokenCookieValue()
+      "Content-Type": "application/json",
+      "X-CSRFToken": getCSRFTokenCookieValue()
     },
     // Used to tell the server to send the Set-Cookie response header
     // containing user credentials (sessionid in case of Django basic auth)
-    credentials: 'include',
+    credentials: "include",
     body: JSON.stringify(payload)
   });
 }
@@ -54,13 +54,13 @@ export function apiLogInUser(data) {
   const payload = buildLogInUserPayload(data.email, data.password);
 
   return fetch(GRAPHQL_ENDPOINT, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     },
     // Used to tell the server to send the Set-Cookie response header
     // containing user credentials (sessionid in case of Django basic auth)
-    credentials: 'include',
+    credentials: "include",
     body: JSON.stringify(payload)
   });
 }

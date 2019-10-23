@@ -5,7 +5,7 @@ import Overlay from "../../../components/overlay/Overlay";
 import AccountCreationForm from "../../../containers/accountCreationForm/AccountCreationForm";
 
 interface ICallbackFn {
-  (): void;
+  (data: any): void;
 }
 
 interface IProps {

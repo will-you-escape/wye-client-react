@@ -1,12 +1,17 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
 
-import HomePageExplanations from './explanations/HomePageExplanations';
-import HomePageTitle from './title/HomePageTitle';
-import AccountCreation from './accountCreation/AccountCreation';
-import { accountCreationRequested } from '../../reducers/actions';
+import HomePageExplanations from "./explanations/HomePageExplanations";
+import HomePageTitle from "./title/HomePageTitle";
+import AccountCreation from "./accountCreation/AccountCreation";
+import { accountCreationRequested } from "../../reducers/actions";
 
-class HomePageContent extends React.Component {
+interface IDispatchToProps {
+  accountCreationRequested: (any) => void;
+}
+
+class HomePageContent extends React.Component<IDispatchToProps> {
   onAccountCreationSuccess = data => {
     this.props.accountCreationRequested(data);
   };
@@ -28,8 +33,11 @@ class HomePageContent extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: Dispatch): IDispatchToProps => ({
   accountCreationRequested: data => dispatch(accountCreationRequested(data))
 });
 
-export default connect(null, mapDispatchToProps)(HomePageContent);
+export default connect(
+  null,
+  mapDispatchToProps
+)(HomePageContent);

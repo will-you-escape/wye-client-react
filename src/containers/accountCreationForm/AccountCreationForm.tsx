@@ -6,7 +6,7 @@ import InputField from "../../form/fields/InputField";
 import { required } from "../../form/validators";
 
 interface IhandleSubmitFn {
-  (): void;
+  (data: any): void;
 }
 
 interface IProps {

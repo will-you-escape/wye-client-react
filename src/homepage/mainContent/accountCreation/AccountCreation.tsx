@@ -38,7 +38,7 @@ class AccountCreation extends React.Component<IProps, ILocalStateProps> {
 
     return (
       <Overlay onClose={this.onClose} displayOverlay={displayOverlay}>
-        <AccountCreationForm handleSubmit={onAccountCreationSuccess} />
+        <AccountCreationForm onSubmit={onAccountCreationSuccess} />
       </Overlay>
     );
   };

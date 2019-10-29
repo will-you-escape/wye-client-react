@@ -5,21 +5,13 @@ import Button from "../../components/Button";
 import InputField from "../../form/fields/InputField";
 import { required } from "../../form/validators";
 
-export interface IhandleSubmitFn {
-  (): void;
-}
-
-interface IProps {
-  handleSubmit: IhandleSubmitFn;
-}
-
 interface IUserLoginInformation {
   email: string;
   password: string;
 }
 
 class LoginForm extends React.Component<
-  InjectedFormProps<IUserLoginInformation> & IProps
+  InjectedFormProps<IUserLoginInformation>
 > {
   render() {
     const { handleSubmit } = this.props;
@@ -52,6 +44,6 @@ class LoginForm extends React.Component<
   }
 }
 
-export default reduxForm<IUserLoginInformation, IProps>({
+export default reduxForm<IUserLoginInformation>({
   form: "login"
 })(LoginForm);

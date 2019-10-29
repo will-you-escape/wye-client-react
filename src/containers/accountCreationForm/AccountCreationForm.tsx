@@ -5,14 +5,6 @@ import Button from "../../components/Button";
 import InputField from "../../form/fields/InputField";
 import { required } from "../../form/validators";
 
-interface IhandleSubmitFn {
-  (data: any): void;
-}
-
-interface IProps {
-  handleSubmit: IhandleSubmitFn;
-}
-
 interface IUserInformation {
   email: string;
   pseudo: string;
@@ -21,7 +13,7 @@ interface IUserInformation {
 }
 
 class AccountCreationForm extends React.Component<
-  InjectedFormProps<IUserInformation> & IProps,
+  InjectedFormProps<IUserInformation>,
   {}
 > {
   render() {
@@ -81,7 +73,7 @@ const validate = values => {
   return errors;
 };
 
-export default reduxForm<IUserInformation, IProps>({
+export default reduxForm<IUserInformation>({
   form: "accountCreation",
   validate
 })(AccountCreationForm);

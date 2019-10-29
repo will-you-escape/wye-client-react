@@ -1,6 +1,14 @@
-import React from 'react';
+import React from "react";
 
-class CloseSign extends React.Component {
+export interface IonCloseFn {
+  (): void;
+}
+
+interface IProps {
+  onClose: IonCloseFn;
+}
+
+class CloseSign extends React.Component<IProps, {}> {
   render() {
     const { onClose } = this.props;
 

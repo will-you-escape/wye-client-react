@@ -1,14 +1,18 @@
-let emptyAuth = {
+export interface IAuthState {
+  readonly logged: boolean;
+}
+
+const initialAuthState: IAuthState = {
   logged: false
 };
 
-const auth = (state = emptyAuth, action) => {
+const auth = (state: IAuthState = initialAuthState, action): IAuthState => {
   switch (action.type) {
-    case 'API_LOGGED_OUT':
+    case "API_LOGGED_OUT":
       return Object.assign({}, state, {
         logged: false
       });
-    case 'API_LOGGED_IN':
+    case "API_LOGGED_IN":
       return Object.assign({}, state, {
         logged: true
       });

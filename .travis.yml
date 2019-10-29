@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-- '8.1.4'
+  - "10.16.3"
 
 cache:
   directories:
@@ -16,7 +16,7 @@ install:
 before_deploy:
   # That's not obvious here, but environment variables are used during this build,
   # like REACT_APP_SERVER_ROOL_URL, to get the environment right when generating static files.
-  # These environment variables are configured on Travis-CI website (project settings). 
+  # These environment variables are configured on Travis-CI website (project settings).
   - npm run build
   # The CNAME file is used by surge.sh to automatically detect under which domain name
   # the project should be deployed.

@@ -1,6 +1,19 @@
-import React from 'react';
+import React from "react";
 
-class InputField extends React.Component {
+interface IMeta {
+  touched: boolean;
+  error: string;
+  warning: string;
+}
+
+interface IProps {
+  input: any;
+  label: string;
+  type: string;
+  meta: IMeta;
+}
+
+class InputField extends React.Component<IProps> {
   // inspired from https://redux-form.com/7.3.0/examples/fieldlevelvalidation/
 
   render() {
@@ -18,10 +31,10 @@ class InputField extends React.Component {
           <input {...input} placeholder={label} type={type} />
           {touched &&
             ((error && (
-              <span className={'error ' + input.name}>{error}</span>
+              <span className={"error " + input.name}>{error}</span>
             )) ||
               (warning && (
-                <span className={'warning ' + input.name}>{warning}</span>
+                <span className={"warning " + input.name}>{warning}</span>
               )))}
         </div>
       </div>

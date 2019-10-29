@@ -1,21 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import { connect } from 'react-redux';
-import classNames from 'classnames';
+import { connect } from "react-redux";
+import classNames from "classnames";
 
-import Button from '../Button';
-import CloseSign from '../overlay/CloseSign';
-import { closeSnackBar } from './actions';
+import Button from "../Button";
+import CloseSign, { IonCloseFn } from "../overlay/CloseSign";
+import { closeSnackBar } from "./actions";
 
-import './SnackBar.css';
+import "./SnackBar.css";
 
-class SnackBar extends React.Component {
+interface INotification {
+  severity: string;
+  title: string;
+  message: string;
+}
+
+interface IProps {
+  notification: INotification;
+  onClose: IonCloseFn;
+  shouldDisplay: boolean;
+}
+
+class SnackBar extends React.Component<IProps, {}> {
   renderSnackBarContent() {
     const { notification, onClose } = this.props;
 
     return (
-      <div className={classNames('snackbar', notification.severity)}>
+      <div className={classNames("snackbar", notification.severity)}>
         <CloseSign onClose={onClose} />
         <h1 className="snackbar__title">{notification.title}</h1>
         <p className="snackbar__message">{notification.message}</p>
@@ -49,4 +61,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SnackBar);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SnackBar);

@@ -1,5 +1,5 @@
-import authStorage from './storage';
-import authAPI from './api';
+import authStorage from "./storage";
+import authAPI from "./api";
 
 export default {
   login: function(email, password) {
@@ -21,15 +21,15 @@ export default {
     });
   },
 
-  logout: function(callback) {
+  logout: function() {
     return new Promise((resolve, reject) => {
       if (this.loggedOut()) {
         resolve(true);
       }
       authAPI
         .requestAuthOut()
-        .then(data => {
-          return authStorage.delete(data);
+        .then(() => {
+          return authStorage.delete();
         })
         .then(() => {
           resolve(true);
@@ -44,7 +44,7 @@ export default {
     return authStorage.loggedIn();
   },
 
-  loggedOut: function(callback) {
-    return authStorage.loggedOut();
+  loggedOut: function() {
+    return authStorage.loggedOut(() => {});
   }
 };

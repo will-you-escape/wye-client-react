@@ -1,34 +1,36 @@
-import React from 'react';
-import { expect } from 'chai';
-import { mount } from 'enzyme';
-import { Link, MemoryRouter } from 'react-router-dom';
+import React from "react";
+import { expect } from "chai";
+import { mount } from "enzyme";
+import { Link, MemoryRouter } from "react-router-dom";
 
-import Header from './Header';
-import Logo from '../../components/logo/Logo';
-import HeaderLogin from './login/HeaderLogin';
+import Header from "./Header";
+import Logo from "../../components/logo/Logo";
+import HeaderLogin from "./login/HeaderLogin";
 
-describe('<Header/>', () => {
-  it('renders default Header', () => {
+const emptyFn = () => {};
+
+describe("<Header/>", () => {
+  it("renders default Header", () => {
     const wrapper = mount(givenDefaultHeader());
   });
 
-  it('contains WYE Logo', () => {
+  it("contains WYE Logo", () => {
     const wrapper = mount(givenDefaultHeader());
     expect(findWYELogo(wrapper)).to.have.length(1);
   });
 
-  it('contains login area when user not logged', () => {
+  it("contains login area when user not logged", () => {
     const wrapper = mount(givenDefaultHeader());
     expect(findLoginArea(wrapper)).to.have.length(1);
   });
 
-  it('contains link to dashboard when user is logged', () => {
+  it("contains link to dashboard when user is logged", () => {
     const wrapper = mount(
       <MemoryRouter>
-        <Header loggedIn={true} />
+        <Header loggedIn={true} onLoginSuccess={emptyFn} />
       </MemoryRouter>
     );
-    expect(findDashboardLink(wrapper).prop('to')).to.equal('/my-account');
+    expect(findDashboardLink(wrapper).prop("to")).to.equal("/my-account");
   });
 
   function findWYELogo(wrapper) {
@@ -45,5 +47,5 @@ describe('<Header/>', () => {
 });
 
 export function givenDefaultHeader() {
-  return <Header />;
+  return <Header loggedIn={false} onLoginSuccess={emptyFn} />;
 }

@@ -1,11 +1,23 @@
-import React from 'react';
+import React from "react";
 
-import Button from '../../../components/Button';
-import Overlay from '../../../components/overlay/Overlay';
-import LoginForm from '../../../containers/LoginForm';
+import Button from "../../../components/Button";
+import Overlay from "../../../components/overlay/Overlay";
+import LoginForm from "../../../containers/LoginForm";
 
-class HeaderLogin extends React.Component {
-  constructor(props) {
+interface ICallbackFn {
+  (): any;
+}
+
+interface IProps {
+  onLoginSuccess: ICallbackFn;
+}
+
+interface ILocalState {
+  overlayDisplay: boolean;
+}
+
+class HeaderLogin extends React.Component<IProps, ILocalState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       overlayDisplay: false

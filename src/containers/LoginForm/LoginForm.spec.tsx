@@ -12,7 +12,7 @@ import {
   triggerFormSubmit
 } from "../../form/testHelpers/events";
 
-const initialState = {};
+const initialState = undefined;
 let store;
 
 const emptyOnSubmit = () => {};

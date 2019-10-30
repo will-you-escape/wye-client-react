@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === `development`) {
 
 const enhancers = composeEnhancers(applyMiddleware(...middlewares));
 
-export function wyeCreateStore(initialState = undefined) {
+export function wyeCreateStore(initialState = {}) {
   const store = createStore(wyeReducers, initialState, enhancers);
   sagaMiddleware.run(wyeSaga);
 

@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@types/chai": "^4.2.4",
-    "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.5",
     "@types/react": "^16.9.2",
@@ -12,6 +11,7 @@
     "@types/react-redux": "^7.1.5",
     "@types/react-router-dom": "^5.1.0",
     "@types/redux-form": "^8.1.9",
+    "@types/sinon": "^7.5.0",
     "awesome-typescript-loader": "^5.2.1",
     "classnames": "^2.2.6",
     "husky": "^0.14.3",
@@ -43,15 +43,17 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
+    "@storybook/addon-info": "^5.2.5",
     "@storybook/react": "^5.2.0",
+    "@types/enzyme": "^3.10.3",
+    "@types/fetch-mock": "^7.3.1",
     "babel-core": "^6.26.0",
     "chai": "^4.1.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "fetch-mock": "^6.5.0",
     "redux-logger": "^3.0.6",
-    "sinon": "^4.5.0",
-    "@storybook/addon-info": "^5.2.5"
+    "sinon": "^4.5.0"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [

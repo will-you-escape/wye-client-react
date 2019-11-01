@@ -3,13 +3,10 @@ import React from "react";
 import Button from "../../../components/Button";
 import Overlay from "../../../components/overlay/Overlay";
 import LoginForm from "../../../containers/LoginForm";
-
-interface ICallbackFn {
-  (): any;
-}
+import { IhandleSubmitFn } from "../,,/../../HomePage";
 
 interface IProps {
-  onLoginSuccess: ICallbackFn;
+  onLoginSuccess: IhandleSubmitFn;
 }
 
 interface ILocalState {

@@ -116,5 +116,5 @@ describe("<HomePage/> interactions", () => {
 });
 
 export function givenDefaultHomePage() {
-  return <HomePage loggedIn={false} />;
+  return <HomePage />;
 }

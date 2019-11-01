@@ -10,8 +10,8 @@ import { IApplicationState } from "../reducers";
 
 import "./homepage.css";
 
-interface IhandleSubmitFn {
-  (): void;
+export interface IhandleSubmitFn {
+  (data: any): any;
 }
 
 interface IReduxStateProps {
@@ -47,7 +47,7 @@ const mapDispatchToProps = dispatch => ({
   logInUser: data => dispatch(logInUser(data))
 });
 
-export default connect<IReduxStateProps, void, void, IApplicationState>(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(HomePage);

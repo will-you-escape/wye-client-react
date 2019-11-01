@@ -3,11 +3,8 @@ import { Link } from "react-router-dom";
 
 import HeaderLogin from "./login/HeaderLogin";
 import Logo from "../../components/logo/Logo";
+import { IhandleSubmitFn } from "../HomePage";
 import "./header.css";
-
-interface IhandleSubmitFn {
-  (): void;
-}
 
 interface IProps {
   onLoginSuccess: IhandleSubmitFn;

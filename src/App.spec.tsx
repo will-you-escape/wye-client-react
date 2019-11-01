@@ -14,7 +14,7 @@ describe("<App>", () => {
   });
 
   describe("initialisation", () => {
-    let sandbox = sinon.sandbox.create();
+    let sandbox = sinon.createSandbox();
 
     afterEach(() => {
       sandbox.restore();

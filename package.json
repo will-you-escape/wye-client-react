@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@storybook/addon-actions": "^5.2.5",
     "@types/chai": "^4.2.4",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.5",

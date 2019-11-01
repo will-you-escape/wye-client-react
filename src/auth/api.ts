@@ -1,7 +1,7 @@
 const TOKEN = "SIGNED_IN";
 
 export default {
-  requestAuth(email, password) {
+  requestAuth(email: string, password: string) {
     return new Promise((resolve, reject) => {
       resolve(TOKEN);
     });

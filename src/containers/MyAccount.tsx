@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import LogoutForm from './LogoutForm';
+import LogoutForm from "./LogoutForm";
 
 class MyAccount extends React.Component {
   render() {

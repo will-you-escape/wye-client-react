@@ -11,7 +11,7 @@ const emptyFn = () => {};
 
 describe("<Header/>", () => {
   it("renders default Header", () => {
-    const wrapper = mount(givenDefaultHeader());
+    mount(givenDefaultHeader());
   });
 
   it("contains WYE Logo", () => {

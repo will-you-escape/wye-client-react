@@ -15,8 +15,6 @@ import {
 const initialState = undefined;
 let store;
 
-const emptyOnSubmit = () => {};
-
 describe("<LoginForm/>", () => {
   beforeEach(() => {
     store = wyeCreateStore(initialState);

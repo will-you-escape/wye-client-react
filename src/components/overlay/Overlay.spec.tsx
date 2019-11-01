@@ -9,7 +9,7 @@ const emptyFn = () => {};
 
 describe("<Overlay/>", () => {
   it("renders default Overlay", () => {
-    const wrapper = mount(givenDefaultOverlay());
+    mount(givenDefaultOverlay());
   });
 
   it("renders passed children without alteration", () => {

@@ -21,7 +21,9 @@ describe("<App>", () => {
     });
 
     it("detects that user is logged if whoami successful on app loading", done => {
-      sandbox.stub(APIProvider, "apiWhoAmI").resolves({ status: 200 });
+      sandbox
+        .stub(APIProvider, "apiWhoAmI")
+        .resolves({ status: 200 } as Response);
 
       let store = wyeCreateStore();
       store.dispatch(initApp());
@@ -32,7 +34,9 @@ describe("<App>", () => {
     });
 
     it("detects that user is not logged if whoami unauthorised on app loading", done => {
-      sandbox.stub(APIProvider, "apiWhoAmI").resolves({ status: 401 });
+      sandbox
+        .stub(APIProvider, "apiWhoAmI")
+        .resolves({ status: 401 } as Response);
 
       let store = wyeCreateStore();
       store.dispatch(initApp());
@@ -43,7 +47,9 @@ describe("<App>", () => {
     });
 
     it("detects that user is not logged if api error on app loading", done => {
-      sandbox.stub(APIProvider, "apiWhoAmI").resolves({ status: 500 });
+      sandbox
+        .stub(APIProvider, "apiWhoAmI")
+        .resolves({ status: 500 } as Response);
 
       let store = wyeCreateStore();
       store.dispatch(initApp());

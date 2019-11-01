@@ -9,7 +9,7 @@ interface IStateToProps {
 
 export default function requireAuth(Component) {
   class AuthenticatedComponent extends React.Component<
-    IStateToProps & RouteComponentProps<{}>,
+    IStateToProps & RouteComponentProps,
     {}
   > {
     componentDidMount() {
@@ -39,9 +39,5 @@ export default function requireAuth(Component) {
     };
   };
 
-  return withRouter(
-    connect<IStateToProps, void, IStateToProps, IApplicationState>(
-      mapStateToProps
-    )(AuthenticatedComponent)
-  );
+  return withRouter(connect(mapStateToProps)(AuthenticatedComponent));
 }

@@ -29,7 +29,7 @@ describe("<Overlay/>", () => {
       <Overlay onClose={onCloseSpy} displayOverlay={true} />
     );
     findCloseSign(wrapper).simulate("click");
-    expect(onCloseSpy.called).to.be.true;
+    expect(onCloseSpy.called).to.equal(true);
   });
 
   function findCloseSign(wrapper) {

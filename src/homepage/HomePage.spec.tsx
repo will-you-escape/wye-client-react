@@ -1,20 +1,20 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { expect } from 'chai';
-import { mount } from 'enzyme';
-import fetchMock from 'fetch-mock';
+import React from "react";
+import { Provider } from "react-redux";
+import { expect } from "chai";
+import { mount } from "enzyme";
+import fetchMock from "fetch-mock";
 
-import HomePage from './HomePage';
-import HeaderLogin from './header/login/HeaderLogin';
-import { wyeCreateStore } from '../store';
+import HomePage from "./HomePage";
+import HeaderLogin from "./header/login/HeaderLogin";
+import { wyeCreateStore } from "../store";
 import {
   setFormInputValue,
   triggerFormSubmit
-} from '../form/testHelpers/events';
+} from "../form/testHelpers/events";
 
-describe('<HomePage/>', () => {
-  describe('not logged', () => {
-    it('contains login area', () => {
+describe("<HomePage/>", () => {
+  describe("not logged", () => {
+    it("contains login area", () => {
       const store = wyeCreateStore();
       const wrapper = mount(
         <Provider store={store}>
@@ -24,14 +24,14 @@ describe('<HomePage/>', () => {
       expect(findLoginArea(wrapper)).to.have.length(1);
     });
 
-    it('contains WYE Homepage title', () => {
+    it("contains WYE Homepage title", () => {
       const store = wyeCreateStore();
       const wrapper = mount(
         <Provider store={store}>
           <HomePage />
         </Provider>
       );
-      expect(wrapper.text()).to.contain('Your Escape Game Space');
+      expect(wrapper.text()).to.contain("Your Escape Game Space");
     });
 
     function findLoginArea(wrapper) {
@@ -40,12 +40,12 @@ describe('<HomePage/>', () => {
   });
 });
 
-describe('<HomePage/> interactions', () => {
+describe("<HomePage/> interactions", () => {
   let env;
 
   beforeEach(() => {
     env = process.env;
-    process.env.REACT_APP_SERVER_ROOT_URL = 'https://my.server.wye/';
+    process.env.REACT_APP_SERVER_ROOT_URL = "https://my.server.wye/";
   });
 
   afterEach(() => {
@@ -53,46 +53,46 @@ describe('<HomePage/> interactions', () => {
     process.env = env;
   });
 
-  describe('login form', () => {
-    it('send data to server when data is valid', () => {
+  describe("login form", () => {
+    it("send data to server when data is valid", () => {
       const store = wyeCreateStore();
       const wrapper = mount(
         <Provider store={store}>
           <HomePage />
         </Provider>
       );
-      fetchMock.post('https://my.server.wye/graphql/', {});
+      fetchMock.post("https://my.server.wye/graphql/", {});
 
       // Open the login form
-      findLoginButton(wrapper).simulate('click');
+      findLoginButton(wrapper).simulate("click");
 
       // Fill the form with valid data
-      setFormInputValue(wrapper, 'email', 'my-email@wye.com');
-      setFormInputValue(wrapper, 'password', 'my-password');
+      setFormInputValue(wrapper, "email", "my-email@wye.com");
+      setFormInputValue(wrapper, "password", "my-password");
       triggerFormSubmit(wrapper);
 
       const fetchCall = firstFetchCall();
 
       expect(fetchCall).not.to.be.undefined;
       expect(getFetchCallURL(fetchCall)).to.equal(
-        'https://my.server.wye/graphql/'
+        "https://my.server.wye/graphql/"
       );
     });
 
-    it('does not send data to server when data is not valid', () => {
+    it("does not send data to server when data is not valid", () => {
       const store = wyeCreateStore();
       const wrapper = mount(
         <Provider store={store}>
           <HomePage />
         </Provider>
       );
-      fetchMock.post('https://my.server.wye/graphql/', {});
+      fetchMock.post("https://my.server.wye/graphql/", {});
 
       // Open the account creation form
-      findLoginButton(wrapper).simulate('click');
+      findLoginButton(wrapper).simulate("click");
 
       // Fill an incomplete form
-      setFormInputValue(wrapper, 'email', 'my-email@wye.com');
+      setFormInputValue(wrapper, "email", "my-email@wye.com");
       triggerFormSubmit(wrapper);
 
       const fetchCall = firstFetchCall();
@@ -111,10 +111,10 @@ describe('<HomePage/> interactions', () => {
   }
 
   function findLoginButton(wrapper) {
-    return wrapper.find('.header__login button');
+    return wrapper.find(".header__login button");
   }
 });
 
 export function givenDefaultHomePage() {
-  return <HomePage loggedIn={false} />;
+  return <HomePage />;
 }

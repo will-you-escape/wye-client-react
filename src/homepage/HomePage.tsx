@@ -10,19 +10,19 @@ import { IApplicationState } from "../reducers";
 
 import "./homepage.css";
 
-interface IhandleSubmitFn {
-  (): void;
+export interface IhandleSubmitFn {
+  (data: any): any;
 }
 
-interface IStateProps {
+interface IReduxStateProps {
   loggedIn: boolean;
 }
 
-interface IProps {
+interface IReduxDispatchProps {
   logInUser: IhandleSubmitFn;
 }
 
-class HomePage extends React.Component<IStateProps & IProps> {
+class HomePage extends React.Component<IReduxStateProps & IReduxDispatchProps> {
   render() {
     const { loggedIn, logInUser } = this.props;
 
@@ -37,7 +37,7 @@ class HomePage extends React.Component<IStateProps & IProps> {
   }
 }
 
-const mapStateToProps = (state: IApplicationState): IStateProps => {
+const mapStateToProps = (state: IApplicationState): IReduxStateProps => {
   return {
     loggedIn: state.auth.logged
   };
@@ -47,7 +47,7 @@ const mapDispatchToProps = dispatch => ({
   logInUser: data => dispatch(logInUser(data))
 });
 
-export default connect<IStateProps, void, IStateProps, IApplicationState>(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(HomePage);

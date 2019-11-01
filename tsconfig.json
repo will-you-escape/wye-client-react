@@ -14,7 +14,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    // TODO: To be removed when all the types have been correctly defined
     "noImplicitAny": false
   },
   "include": ["src"]

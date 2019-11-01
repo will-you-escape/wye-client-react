@@ -1,9 +1,7 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { storiesOf } from "@storybook/react";
 
-import { givenDefaultOverlay } from './Overlay.spec';
+import { givenDefaultOverlay } from "./Overlay.spec";
 
-storiesOf('Overlay', module).add('with simple span', () => {
+storiesOf("Overlay", module).add("with simple span", () => {
   return givenDefaultOverlay();
 });

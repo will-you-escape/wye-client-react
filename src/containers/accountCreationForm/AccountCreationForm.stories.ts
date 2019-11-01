@@ -1,9 +1,8 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
-import { givenDefaultAccountCreationForm } from './AccountCreationForm.spec';
+import { givenDefaultAccountCreationForm } from "./AccountCreationForm.spec";
 
-storiesOf('AccountCreationForm', module).add('with text', () => {
-  return givenDefaultAccountCreationForm(action('account-creation-success'));
+storiesOf("AccountCreationForm", module).add("with text", () => {
+  return givenDefaultAccountCreationForm(action("account-creation-success"));
 });

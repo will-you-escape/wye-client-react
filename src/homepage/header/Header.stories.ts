@@ -1,9 +1,7 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { storiesOf } from "@storybook/react";
 
-import { givenDefaultHeader } from './Header.spec';
+import { givenDefaultHeader } from "./Header.spec";
 
-storiesOf('Header', module).add('when non logged', () => {
+storiesOf("Header", module).add("when non logged", () => {
   return givenDefaultHeader();
 });

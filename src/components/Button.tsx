@@ -1,4 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
+
+interface IButtonProps {
+  primary?: boolean;
+}
 
 const Button = styled.button`
   border-radius: 3px;
@@ -8,7 +12,7 @@ const Button = styled.button`
   color: black;
   border: 2px solid black;
 
-  ${props =>
+  ${(props: IButtonProps) =>
     props.primary &&
     css`
       background: black;

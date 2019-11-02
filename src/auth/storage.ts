@@ -1,5 +1,5 @@
 export default {
-  save(data) {
+  save(data: string) {
     return new Promise((resolve, reject) => {
       localStorage.wyeToken = data;
       resolve(true);
@@ -17,7 +17,7 @@ export default {
     return !!localStorage.wyeToken;
   },
 
-  loggedOut(callback) {
+  loggedOut() {
     return !localStorage.wyeToken;
   }
 };

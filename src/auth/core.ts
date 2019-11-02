@@ -45,6 +45,6 @@ export default {
   },
 
   loggedOut: function() {
-    return authStorage.loggedOut(() => {});
+    return authStorage.loggedOut();
   }
 };

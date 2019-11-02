@@ -4,6 +4,7 @@ import { mount } from "enzyme";
 import sinon from "sinon";
 
 import App from "./App";
+import { IAssertionFn } from "./types/helpers-spec";
 import { initApp } from "./reducers/actions";
 import * as APIProvider from "./api/whoami";
 import { wyeCreateStore } from "./store";
@@ -61,7 +62,7 @@ describe("<App>", () => {
   });
 });
 
-function asyncAssertion(done, assertionFn) {
+function asyncAssertion(done: jest.DoneCallback, assertionFn: IAssertionFn) {
   setTimeout(() => {
     try {
       assertionFn();

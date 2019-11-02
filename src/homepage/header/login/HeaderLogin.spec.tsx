@@ -1,6 +1,6 @@
 import React from "react";
 import { expect } from "chai";
-import { shallow } from "enzyme";
+import { shallow, ShallowWrapper } from "enzyme";
 
 import HeaderLogin from "./HeaderLogin";
 import Overlay from "../../../components/overlay/Overlay";
@@ -30,15 +30,15 @@ describe("<HeaderLogin/>", () => {
     expect(findOverlay(wrapper)).to.have.length(1);
   });
 
-  function findLoginMessage(wrapper) {
+  function findLoginMessage(wrapper: ShallowWrapper) {
     return wrapper.find(".header__login--message");
   }
 
-  function findLoginButton(wrapper) {
+  function findLoginButton(wrapper: ShallowWrapper) {
     return wrapper.find(Button);
   }
 
-  function findOverlay(wrapper) {
+  function findOverlay(wrapper: ShallowWrapper) {
     return wrapper.find(Overlay);
   }
 });

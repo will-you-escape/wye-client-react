@@ -1,6 +1,6 @@
 import React from "react";
 import { expect } from "chai";
-import { mount } from "enzyme";
+import { mount, ReactWrapper } from "enzyme";
 import sinon from "sinon";
 
 import Overlay from "./Overlay";
@@ -32,7 +32,7 @@ describe("<Overlay/>", () => {
     expect(onCloseSpy.called).to.equal(true);
   });
 
-  function findCloseSign(wrapper) {
+  function findCloseSign(wrapper: ReactWrapper) {
     return wrapper.find(".close-sign button");
   }
 });

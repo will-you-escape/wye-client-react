@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { expect } from "chai";
-import { mount } from "enzyme";
+import { mount, ReactWrapper } from "enzyme";
 import fetchMock from "fetch-mock";
 
 import HomePage from "./HomePage";
@@ -34,14 +34,14 @@ describe("<HomePage/>", () => {
       expect(wrapper.text()).to.contain("Your Escape Game Space");
     });
 
-    function findLoginArea(wrapper) {
+    function findLoginArea(wrapper: ReactWrapper) {
       return wrapper.find(HeaderLogin);
     }
   });
 });
 
 describe("<HomePage/> interactions", () => {
-  let env;
+  let env: NodeJS.ProcessEnv;
 
   beforeEach(() => {
     env = process.env;
@@ -105,12 +105,12 @@ describe("<HomePage/> interactions", () => {
     return fetchMock.calls()[0];
   }
 
-  function getFetchCallURL(mockedCall) {
+  function getFetchCallURL(mockedCall: fetchMock.MockCall) {
     // Mocked fetch-mock calls are a tuple, first one being the URL called.
     return mockedCall[0];
   }
 
-  function findLoginButton(wrapper) {
+  function findLoginButton(wrapper: ReactWrapper) {
     return wrapper.find(".header__login button");
   }
 });

@@ -1,6 +1,6 @@
 import React from "react";
 import { expect } from "chai";
-import { mount } from "enzyme";
+import { mount, ReactWrapper } from "enzyme";
 import { Link, MemoryRouter } from "react-router-dom";
 
 import Header from "./Header";
@@ -33,15 +33,15 @@ describe("<Header/>", () => {
     expect(findDashboardLink(wrapper).prop("to")).to.equal("/my-account");
   });
 
-  function findWYELogo(wrapper) {
+  function findWYELogo(wrapper: ReactWrapper) {
     return wrapper.find(Logo);
   }
 
-  function findLoginArea(wrapper) {
+  function findLoginArea(wrapper: ReactWrapper) {
     return wrapper.find(HeaderLogin);
   }
 
-  function findDashboardLink(wrapper) {
+  function findDashboardLink(wrapper: ReactWrapper) {
     return wrapper.find(Link);
   }
 });

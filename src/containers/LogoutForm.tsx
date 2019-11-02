@@ -1,4 +1,5 @@
 import React from "react";
+import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import Button from "../components/Button";
 import auth from "../auth/core";
@@ -13,7 +14,7 @@ interface IProps {
 }
 
 class LogoutForm extends React.Component<IProps> {
-  handleSubmit = event => {
+  handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const { dispatchLogOutUser } = this.props;
     auth
@@ -39,7 +40,7 @@ class LogoutForm extends React.Component<IProps> {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     dispatchLogOutUser: () => {
       dispatch(logOutUser());

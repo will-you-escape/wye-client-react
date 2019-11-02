@@ -6,13 +6,14 @@ import HomePageExplanations from "./explanations/HomePageExplanations";
 import HomePageTitle from "./title/HomePageTitle";
 import AccountCreation from "./accountCreation/AccountCreation";
 import { accountCreationRequested } from "../../reducers/actions";
+import { ICreateAccountData } from "../../api/user";
 
 interface IDispatchToProps {
-  accountCreationRequested: (any) => void;
+  accountCreationRequested: (data: ICreateAccountData) => void;
 }
 
 class HomePageContent extends React.Component<IDispatchToProps> {
-  onAccountCreationSuccess = data => {
+  onAccountCreationSuccess = (data: ICreateAccountData) => {
     this.props.accountCreationRequested(data);
   };
 

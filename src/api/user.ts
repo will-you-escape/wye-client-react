@@ -2,7 +2,7 @@ import "whatwg-fetch";
 
 import { getGraphQLEndpointURL } from "../config/server";
 
-interface ICreateAccountData {
+export interface ICreateAccountData {
   email: string;
   pseudo: string;
   password: string;

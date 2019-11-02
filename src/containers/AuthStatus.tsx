@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { IApplicationState } from "../reducers";
+
 interface IProps {
   loggedIn: boolean;
 }
@@ -17,7 +19,7 @@ class AuthStatus extends React.Component<IProps, {}> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: IApplicationState) => {
   return {
     loggedIn: state.auth.logged
   };

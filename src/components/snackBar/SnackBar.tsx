@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Dispatch } from "redux";
 
 import { connect } from "react-redux";
 import classNames from "classnames";
@@ -7,6 +8,7 @@ import classNames from "classnames";
 import Button from "../Button";
 import CloseSign, { IonCloseFn } from "../overlay/CloseSign";
 import { closeSnackBar } from "./actions";
+import { IApplicationState } from "../../reducers";
 
 import "./SnackBar.css";
 
@@ -46,14 +48,14 @@ class SnackBar extends React.Component<IProps, {}> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: IApplicationState) => {
   return {
     shouldDisplay: state.snackBar.shouldDisplay,
     notification: state.snackBar.content
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     onClose: () => {
       dispatch(closeSnackBar());

@@ -6,7 +6,7 @@ import {
 } from "../config/server";
 import { getCSRFTokenCookieValue } from "./cookies";
 
-interface ILogInData {
+export interface ILogInData {
   email: string;
   password: string;
 }

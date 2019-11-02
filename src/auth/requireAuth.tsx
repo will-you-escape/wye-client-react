@@ -7,7 +7,7 @@ interface IStateToProps {
   loggedIn: boolean;
 }
 
-export default function requireAuth(Component) {
+export default function requireAuth(Component: React.ComponentType) {
   class AuthenticatedComponent extends React.Component<
     IStateToProps & RouteComponentProps,
     {}

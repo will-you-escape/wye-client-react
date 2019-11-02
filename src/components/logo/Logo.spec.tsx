@@ -1,6 +1,6 @@
 import React from "react";
 import { expect } from "chai";
-import { mount } from "enzyme";
+import { mount, ReactWrapper } from "enzyme";
 
 import Logo from "./Logo";
 
@@ -14,7 +14,7 @@ describe("<Logo/>", () => {
     expect(findImage(wrapper).prop("src")).to.equal("wye_logo.png");
   });
 
-  function findImage(wrapper) {
+  function findImage(wrapper: ReactWrapper) {
     return wrapper.find("img");
   }
 });

@@ -1,6 +1,6 @@
 import React from "react";
 import { expect } from "chai";
-import { shallow } from "enzyme";
+import { shallow, ShallowWrapper } from "enzyme";
 
 import AccountCreation from "./AccountCreation";
 import Overlay from "../../../components/overlay/Overlay";
@@ -23,11 +23,11 @@ describe("<AccountCreation/>", () => {
     expect(findOverlay(wrapper)).to.have.length(1);
   });
 
-  function findAccountCreationButton(wrapper) {
+  function findAccountCreationButton(wrapper: ShallowWrapper) {
     return wrapper.find(Button);
   }
 
-  function findOverlay(wrapper) {
+  function findOverlay(wrapper: ShallowWrapper) {
     return wrapper.find(Overlay);
   }
 });

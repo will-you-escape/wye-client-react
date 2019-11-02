@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
 
 import { logInUser } from "../reducers/actions";
 import Header from "./header/Header";
@@ -7,6 +8,7 @@ import HomePageContent from "./mainContent/HomePageContent";
 import Footer from "./footer/Footer";
 import SnackBar from "../components/snackBar/SnackBar";
 import { IApplicationState } from "../reducers";
+import { ILogInData } from "../api/logUser";
 
 import "./homepage.css";
 
@@ -43,8 +45,8 @@ const mapStateToProps = (state: IApplicationState): IReduxStateProps => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  logInUser: data => dispatch(logInUser(data))
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  logInUser: (data: ILogInData) => dispatch(logInUser(data))
 });
 
 export default connect(

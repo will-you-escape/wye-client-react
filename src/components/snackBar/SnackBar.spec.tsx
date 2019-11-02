@@ -1,21 +1,22 @@
-import React from 'react';
-import { expect } from 'chai';
-import { mount } from 'enzyme';
-import { Provider } from 'react-redux';
+import React from "react";
+import { Store } from "redux";
+import { expect } from "chai";
+import { mount, ReactWrapper } from "enzyme";
+import { Provider } from "react-redux";
 
-import { wyeCreateStore } from '../../store';
-import SnackBar from './SnackBar';
+import { wyeCreateStore } from "../../store";
+import SnackBar from "./SnackBar";
 
-describe('<SnackBar/>', () => {
-  it('renders SnackBar when notification', () => {
+describe("<SnackBar/>", () => {
+  it("renders SnackBar when notification", () => {
     const initialState = {
       snackBar: {
         shouldDisplay: true,
         content: {
-          title: 'Internal server error',
+          title: "Internal server error",
           message:
-            'An internal server error occured. Please retry again later.',
-          severity: 'error'
+            "An internal server error occured. Please retry again later.",
+          severity: "error"
         }
       }
     };
@@ -23,14 +24,14 @@ describe('<SnackBar/>', () => {
     const wrapper = mount(givenDefaultSnackBar(store));
 
     expect(findSnackBarTitle(wrapper).text()).to.have.string(
-      'Internal server error'
+      "Internal server error"
     );
     expect(findSnackBarMessage(wrapper).text()).to.have.string(
-      'An internal server error occured. Please retry again later.'
+      "An internal server error occured. Please retry again later."
     );
   });
 
-  it('does not render SnackBar if no notification', () => {
+  it("does not render SnackBar if no notification", () => {
     let store = wyeCreateStore();
     const wrapper = mount(givenDefaultSnackBar(store));
 
@@ -38,15 +39,15 @@ describe('<SnackBar/>', () => {
     expect(findSnackBarMessage(wrapper).exists()).to.be.false;
   });
 
-  it('does not render SnackBar if notification should not be displayed', () => {
+  it("does not render SnackBar if notification should not be displayed", () => {
     const initialState = {
       snackBar: {
         shouldDisplay: false,
         content: {
-          title: 'Internal server error',
+          title: "Internal server error",
           message:
-            'An internal server error occured. Please retry again later.',
-          severity: 'error'
+            "An internal server error occured. Please retry again later.",
+          severity: "error"
         }
       }
     };
@@ -57,16 +58,16 @@ describe('<SnackBar/>', () => {
     expect(findSnackBarMessage(wrapper).exists()).to.be.false;
   });
 
-  function findSnackBarTitle(wrapper) {
-    return wrapper.find('.snackbar__title');
+  function findSnackBarTitle(wrapper: ReactWrapper) {
+    return wrapper.find(".snackbar__title");
   }
 
-  function findSnackBarMessage(wrapper) {
-    return wrapper.find('.snackbar__message');
+  function findSnackBarMessage(wrapper: ReactWrapper) {
+    return wrapper.find(".snackbar__message");
   }
 });
 
-export function givenDefaultSnackBar(store) {
+export function givenDefaultSnackBar(store: Store) {
   return (
     <Provider store={store}>
       <SnackBar />

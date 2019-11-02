@@ -6,7 +6,12 @@ import {
 } from "../config/server";
 import { getCSRFTokenCookieValue } from "./cookies";
 
-function buildLogInUserPayload(email, password) {
+export interface ILogInData {
+  email: string;
+  password: string;
+}
+
+function buildLogInUserPayload(email: string, password: string) {
   return {
     query: `mutation($email: String!, $password: String!) {
       loginUser(email: $email, password: $password) {
@@ -49,7 +54,7 @@ export function apiLogOutUser() {
   });
 }
 
-export function apiLogInUser(data) {
+export function apiLogInUser(data: ILogInData) {
   const GRAPHQL_ENDPOINT = getGraphQLEndpointURL();
   const payload = buildLogInUserPayload(data.email, data.password);
 

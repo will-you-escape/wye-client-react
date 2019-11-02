@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware, compose, Middleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { createLogger } from "redux-logger";
 
@@ -12,7 +12,7 @@ const composeEnhancers =
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [sagaMiddleware];
+const middlewares: Array<Middleware> = [sagaMiddleware];
 
 if (process.env.NODE_ENV === `development`) {
   const logger = createLogger({

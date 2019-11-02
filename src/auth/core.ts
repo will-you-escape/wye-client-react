@@ -2,7 +2,7 @@ import authStorage from "./storage";
 import authAPI from "./api";
 
 export default {
-  login: function(email, password) {
+  login: function(email: string, password: string) {
     return new Promise((resolve, reject) => {
       if (this.loggedIn()) {
         resolve(true);
@@ -45,6 +45,6 @@ export default {
   },
 
   loggedOut: function() {
-    return authStorage.loggedOut(() => {});
+    return authStorage.loggedOut();
   }
 };

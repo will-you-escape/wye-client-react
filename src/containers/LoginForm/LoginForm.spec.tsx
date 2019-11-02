@@ -1,4 +1,5 @@
 import React from "react";
+import { Store } from "redux";
 import { Provider } from "react-redux";
 import { expect } from "chai";
 import { mount } from "enzyme";
@@ -13,7 +14,7 @@ import {
 } from "../../form/testHelpers/events";
 
 const initialState = undefined;
-let store;
+let store: Store;
 
 describe("<LoginForm/>", () => {
   beforeEach(() => {
@@ -76,7 +77,7 @@ describe("<LoginForm/>", () => {
 });
 
 interface IOnSubmitCallback {
-  (any): any;
+  (): void;
 }
 
 export function givenDefaultLoginForm(onSubmitCallback?: IOnSubmitCallback) {

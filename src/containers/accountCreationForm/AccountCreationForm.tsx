@@ -12,6 +12,8 @@ interface IUserInformation {
   passwordConfirmation: string;
 }
 
+type IUserInformationErrors = Partial<IUserInformation>;
+
 class AccountCreationForm extends React.Component<
   InjectedFormProps<IUserInformation>,
   {}
@@ -65,10 +67,10 @@ class AccountCreationForm extends React.Component<
   }
 }
 
-const validate = values => {
-  const errors = {};
+const validate = (values: IUserInformation) => {
+  const errors: IUserInformationErrors = {};
   if (values.password !== values.passwordConfirmation) {
-    errors["passwordConfirmation"] = "Not identical to password";
+    errors.passwordConfirmation = "Not identical to password";
   }
   return errors;
 };

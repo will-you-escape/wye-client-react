@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import LogoutForm from "./LogoutForm";
+import LogoutForm from "../containers/LogoutForm";
+import EscapeRoomSessionArea from "./EscapeRoomSessionArea";
 
 class MyAccount extends React.Component {
   render() {
@@ -12,6 +13,7 @@ class MyAccount extends React.Component {
         </header>
         <Link to="/">Homepage</Link>
         <LogoutForm />
+        <EscapeRoomSessionArea />
       </div>
     );
   }

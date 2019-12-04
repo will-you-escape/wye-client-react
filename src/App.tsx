@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import './App.css';
-import { Provider } from 'react-redux';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React, { Component } from "react";
+import "./App.css";
+import { Provider } from "react-redux";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import { initApp } from './reducers/actions';
+import { initApp } from "./reducers/actions";
 
-import HomePage from './homepage/HomePage';
-import MyAccount from './containers/MyAccount';
+import HomePage from "./homepage/HomePage";
+import MyAccount from "./myAccount/MyAccount";
 
-import requireAuth from './auth/requireAuth';
+import requireAuth from "./auth/requireAuth";
 
-import { wyeCreateStore } from './store';
+import { wyeCreateStore } from "./store";
 
 let store = wyeCreateStore();
 store.dispatch(initApp());

@@ -3,6 +3,7 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { apiCreateAccount, ICreateAccountData } from "../api/user";
 import { apiLogInUser, apiLogOutUser, ILogInData } from "../api/logUser";
 import { apiWhoAmI } from "../api/whoami";
+import { createEscapeRoomSession } from "../myAccount/sagas";
 
 const HTTP_SUCCESS_STATUS_CODE = 200;
 const HTTP_UNAUTHORIZED_STATUS_CODE = 401;
@@ -100,6 +101,7 @@ function* wyeSaga() {
   yield takeLatest("ACCOUNT_CREATION", createAccount);
   yield takeLatest("LOG_IN_USER", logInUser);
   yield takeLatest("LOG_OUT_USER", logOutUser);
+  yield takeLatest("ESCAPE_ROOM_SESSION_CREATION", createEscapeRoomSession);
 }
 
 export default wyeSaga;

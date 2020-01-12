@@ -8,3 +8,9 @@ export const createEscapeRoomSessionAction = (
     payload: data
   };
 };
+
+export const fetchEscapeRoomSessionsAction = () => {
+  return {
+    type: "ESCAPE_ROOM_SESSION_LIST"
+  };
+};

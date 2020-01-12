@@ -6,7 +6,13 @@ import { connect } from "react-redux";
 import EscapeRoomSessionCreationForm, {
   IEscapeRoomSessionInformation
 } from "./EscapeRoomSessionCreationForm";
-import { createEscapeRoomSessionAction } from "./actions";
+import EscapeRoomSessionListing from "./EscapeRoomSessionListing";
+import { fetchEscapeRoomSessionsAction } from "./actions";
+import { IApplicationState } from "../reducers";
+
+interface IReduxStateProps {
+  sessions: IEscapeRoomSession;
+}
 
 interface IEscapeRoomSessionCreationCallbackFn {
   (data: IEscapeRoomSessionInformation): void;
@@ -18,18 +24,29 @@ interface IProps {
 
 class EscapeRoomSessionArea extends React.Component<IProps> {
   render() {
-    const { onEscapeRoomSessionCreation } = this.props;
+    const { onEscapeRoomSessionCreation, sessions } = this.props;
 
     return (
-      <EscapeRoomSessionCreationForm onSubmit={onEscapeRoomSessionCreation} />
+      <React.Fragment>
+        <EscapeRoomSessionCreationForm onSubmit={onEscapeRoomSessionCreation} />
+        <EscapeRoomSessionListing
+          sessions={sessions}
+        ></EscapeRoomSessionListing>
+      </React.Fragment>
     );
   }
 }
 
+const mapStateToProps = (state: IApplicationState): IReduxStateProps => {
+  return {
+    sessions: state.sessions
+  };
+};
+
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    onEscapeRoomSessionCreation: (data: IEscapeRoomSessionInformation) => {
-      dispatch(createEscapeRoomSessionAction(data));
+    fetchSessions: () => {
+      dispatch(fetchEscapeRoomSessionsAction());
     }
   };
 };
